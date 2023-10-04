@@ -12,15 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Users {
+public class TeamMembers {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String name;
-	private String email;
-	private String password;
-	private String role;
-	private String profile_picture;
 	
 }
