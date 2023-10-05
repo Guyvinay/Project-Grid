@@ -1,4 +1,4 @@
-package com.app.projectHub;
+package com.projecthub;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

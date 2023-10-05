@@ -8,11 +8,11 @@
 		<version>3.1.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.app</groupId>
+	<groupId>com.projecthub</groupId>
 	<artifactId>ProjectHub</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ProjectHub</name>
-	<description>Demo project for Spring Boot</description>
+	<description>ProjectHub Web Services</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
