@@ -2,9 +2,12 @@ package com.projecthub.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.projecthub.model.Teams;
 import com.projecthub.service.TeamsService;
 
+@Service
 public class TeamsServiceImpl implements TeamsService {
 
 	@Override

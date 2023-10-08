@@ -1,5 +1,9 @@
 package com.projecthub.repository;
 
-public interface ProjectsRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.projecthub.model.Projects;
+
+public interface ProjectsRepository extends  JpaRepository<Projects, Long> {
 
 }

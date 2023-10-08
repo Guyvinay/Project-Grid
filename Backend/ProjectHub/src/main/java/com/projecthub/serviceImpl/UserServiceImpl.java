@@ -2,9 +2,12 @@ package com.projecthub.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.projecthub.model.Users;
 import com.projecthub.service.UsersService;
 
+@Service
 public class UserServiceImpl implements UsersService {
 
 	@Override

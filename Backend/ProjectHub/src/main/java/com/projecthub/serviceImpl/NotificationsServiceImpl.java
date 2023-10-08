@@ -2,9 +2,12 @@ package com.projecthub.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.projecthub.model.Notifications;
 import com.projecthub.service.NotificationsService;
 
+@Service
 public class NotificationsServiceImpl implements NotificationsService {
 
 	@Override

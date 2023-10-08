@@ -2,9 +2,12 @@ package com.projecthub.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.projecthub.model.Tasks;
 import com.projecthub.service.TasksService;
 
+@Service
 public class TasksServiceImpl implements TasksService {
 
 	@Override
