@@ -11,7 +11,7 @@ public interface UsersService {
 	public Users getUserById(Long id);
 	public List<Users> getAllUsers();
 	public Users updateUsers(Long id , Users user);
-	public Users deleteUserById(Long id);
+	public String deleteUserById(Long id);
 	
 	
 }
