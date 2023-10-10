@@ -52,4 +52,11 @@ public class UserServiceImpl implements UsersService {
 		return "User With ID:"+id+" Successfully Deleted";
 	}
 
+	@Override
+	public Users getUserByEmail(String email) {
+		return usersRepository.findByEmail(email).orElseThrow(
+				()->new EntryNotFoundException("User with email: "+email+" not Found"));
+		
+	}
+
 }

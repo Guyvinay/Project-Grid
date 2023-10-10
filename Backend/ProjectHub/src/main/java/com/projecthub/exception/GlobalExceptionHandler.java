@@ -76,7 +76,7 @@ public class GlobalExceptionHandler {  // Exception Handler
 	    public ResponseEntity<MyErrorDetails> GeneralExceptionHandler(Exception se, WebRequest req){
 	    	MyErrorDetails err= new MyErrorDetails();
 	    	err.setTimestamp(LocalDateTime.now());
-//	    	log.info("From Exception");
+	    	log.info("From Exception.class Global Exception Handler");
 	    	err.setMessage(se.getMessage());
 	    	err.setDetails(req.getDescription(false));
 	    	return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST) ;

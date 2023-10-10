@@ -10,6 +10,6 @@ public interface ProjectsService {
 	public Projects getProjectById(Long id);
 	public List<Projects> getAllProjects();
 	public Projects updateProjects(Long id , Projects project);
-	public Projects deleteProjectById(Long id);
+	public String deleteProjectById(Long id);
 	
 }

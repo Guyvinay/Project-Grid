@@ -2,6 +2,8 @@ package com.projecthub.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,6 +31,7 @@ public class Teams {
 	private Projects project;
 	
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "team")
 	private List<Users> users;
 }

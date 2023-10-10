@@ -9,6 +9,7 @@ public interface UsersService {
 
 	public Users saveUsers(Users user);
 	public Users getUserById(Long id);
+	public Users getUserByEmail(String email);
 	public List<Users> getAllUsers();
 	public Users updateUsers(Long id , Users user);
 	public String deleteUserById(Long id);

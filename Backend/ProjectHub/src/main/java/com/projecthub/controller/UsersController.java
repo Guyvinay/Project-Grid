@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,15 +25,21 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/projecthub")
+@CrossOrigin(value = "*")
 public class UsersController {
 
 	@Autowired
 	private UsersService userService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	
 	@PostMapping(value = "/register")
 	public ResponseEntity<Users> saveUsers( @Valid @RequestBody Users user){
 		if(user==null)
 			throw new EntryNotFoundException("User cannot be null, Value must be passed! ");
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return new ResponseEntity<Users>(userService.saveUsers(user),HttpStatus.ACCEPTED);
 	}
 
@@ -72,6 +81,14 @@ public class UsersController {
 		
 		return new ResponseEntity<String>(
 				userService.deleteUserById(id),HttpStatus.ACCEPTED);
+	}
+	@GetMapping(value = "/signIn")
+	public String signInUsingbasicAuth(Authentication authentication ) {
+//		System.out.println(authentication);
+		if(authentication.getName()!=null)
+			return authentication.getName() +"  Successfully Logged in..";
+		return " Login Failed ...";
+		
 	}
 	
 }

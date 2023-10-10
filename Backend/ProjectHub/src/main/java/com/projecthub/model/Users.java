@@ -25,24 +25,35 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Data
-public class Users {
+@Getter
+@Setter
+public class Users extends Profile {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String name;
-	@NotBlank(message = "email can't be blank")
-	@Email(
-			regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-			message = "email should be in proper format i.e : johndoe@example.com"
-	)
-	@Column(unique = true)
-	private String email;
-	private String password;
-	private String profile_picture;
-	private String role;
-	
+	public Users(Projects project, Teams team, List<Tasks> task, List<Notifications> notifications) {
+		super();
+		this.project = project;
+		this.team = team;
+		this.task = task;
+		this.notifications = notifications;
+	}
+
+	public Users() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+     public Users(
+			@NotBlank(message = "email can't be blank") @Email(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "email should be in proper format i.e : johndoe@example.com") String email,
+			String password, String role, String name, String profile_picture, Projects project, Teams team,
+			List<Tasks> task, List<Notifications> notifications) {
+		super(email, password, role, name, profile_picture);
+		this.project = project;
+		this.team = team;
+		this.task = task;
+		this.notifications = notifications;
+	}
+
+
 
 
 //	@ManyToMany
@@ -54,7 +65,7 @@ public class Users {
 //	private List<Projects> projects;
 	
 	
-
+	
 	@OneToOne
 	@JoinColumn(name = "project_id")
 	private Projects project;

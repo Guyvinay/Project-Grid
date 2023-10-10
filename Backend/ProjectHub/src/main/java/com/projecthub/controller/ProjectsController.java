@@ -1,8 +1,80 @@
 package com.projecthub.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.projecthub.exception.EntryNotFoundException;
+import com.projecthub.model.Projects;
+import com.projecthub.service.ProjectsService;
+
+import jakarta.validation.Valid;
+
 @RestController
+@RequestMapping(value = "/projecthub/projects")
+@CrossOrigin(value = "*")
 public class ProjectsController {
 
+	@Autowired
+	private ProjectsService projectsService;
+	
+	@PostMapping(value = "/register")
+	public ResponseEntity<Projects> saveProjects( @Valid @RequestBody Projects user){
+		if(user==null)
+			throw new EntryNotFoundException("Project cannot be null, Value must be passed! ");
+		return new ResponseEntity<Projects>(projectsService.saveProjects(user),HttpStatus.ACCEPTED);
+	}
+
+	@GetMapping(value = "/projects/{id}")
+	public ResponseEntity<Projects> getProjectById( @PathVariable("id") Long id) {
+		if(id==null)
+			throw new EntryNotFoundException(
+					"Id cannot be null, Id must be passed! ");
+		
+		return new ResponseEntity<Projects>(
+				projectsService.getProjectById(id),HttpStatus.ACCEPTED);
+	}
+
+	@GetMapping(value = "/projects")
+	public ResponseEntity<List<Projects>> getAllProjects(){
+		 
+		return  new ResponseEntity<List<Projects>>(
+				projectsService.getAllProjects(),HttpStatus.ACCEPTED); 
+	}
+
+	@PutMapping(value = "/updateProject/{id}")
+	public ResponseEntity<Projects> updateProjects(
+			@PathVariable("id") Long id,@RequestBody Projects user) {
+		
+		if(id==null)
+			throw new EntryNotFoundException(
+					"Id cannot be null, Id must be passed! ");
+		if(user==null)
+			throw new EntryNotFoundException("Project cannot be null, Value must be passed! ");
+		return new ResponseEntity<Projects>(
+				projectsService.updateProjects(id,user),HttpStatus.ACCEPTED);
+	}
+
+	@DeleteMapping(value = "deleteProject/{id}")
+	public ResponseEntity<String> deleteProjectById(@PathVariable("id") Long id) {
+		if(id==null)
+			throw new EntryNotFoundException(
+					"Id cannot be null, Id must be passed! ");
+		
+		return new ResponseEntity<String>(
+				projectsService.deleteProjectById(id),HttpStatus.ACCEPTED);
+	}
+	
+	
 }
