@@ -23,12 +23,6 @@ public class UserServiceImpl implements UsersService {
 
 	@Autowired
 	private UsersRepository usersRepository;
-<<<<<<< HEAD
-
-	@Override
-	public Users saveUsers(Users user) {
-		user.setRole("ROLE_"+user.getRole().toUpperCase());
-=======
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -36,9 +30,8 @@ public class UserServiceImpl implements UsersService {
 	
 	@Override
 	public Users saveUsers(Users user) {
-		user.setRole("ROLE_"+user.getRole().toUpperCase());
+		user.setRole("ROLE_USER");
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
->>>>>>> 20fc2b4c69dbfa16984c47e4bdc8c3ede0284f95
 		return usersRepository.save(user);
 	}
 
@@ -91,6 +84,7 @@ public class UserServiceImpl implements UsersService {
 		}
 		else {
 			Users user = optional.get();
+			String userEmail = user.getEmail();
              TokenHandling tokenHandling = new TokenHandling();
 		     String token = tokenHandling.generateToken(
 				     new User(username,password,authorities)
@@ -99,7 +93,7 @@ public class UserServiceImpl implements UsersService {
 		     Long profile_id = user.getProfile_id();
 		     String profile_picture = user.getProfile_picture();
 		     
-		     return new AuthenticatedResponse(profile_id,name,profile_picture,token);
+		     return new AuthenticatedResponse(profile_id, userEmail, name,profile_picture,token);
 		}
 	}
 

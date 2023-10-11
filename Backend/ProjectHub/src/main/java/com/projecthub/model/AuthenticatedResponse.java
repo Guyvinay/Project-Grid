@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 public class AuthenticatedResponse {
 
 	private Long profile_id;
+	private String email;
 	private String name;
 	private String profile_picture;
 	private String jwtToken;
-
 	
 }
