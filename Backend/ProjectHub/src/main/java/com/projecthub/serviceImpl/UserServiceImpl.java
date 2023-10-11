@@ -2,6 +2,7 @@ package com.projecthub.serviceImpl;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.projecthub.exception.EntryNotFoundException;
-import com.projecthub.model.RespToken;
+import com.projecthub.exception.UnauthorizedAccessException;
+import com.projecthub.model.AuthenticatedResponse;
 import com.projecthub.model.Users;
 import com.projecthub.repository.UsersRepository;
 import com.projecthub.securityConfig.TokenHandling;
@@ -72,15 +74,26 @@ public class UserServiceImpl implements UsersService {
 
 
 	@Override
-	public RespToken generateJwtToken(String username, String password,
+	public AuthenticatedResponse generateJwtToken(String username, String password,
 			Collection<? extends GrantedAuthority> authorities) {
 		
-        TokenHandling tokenHandling = new TokenHandling();
-		String token = tokenHandling.generateToken(
-				new User(username,password,authorities)
-				);
+		Optional<Users> optional = usersRepository.findByEmail(username);
 		
-		return new RespToken(token);
+		if(optional.isEmpty()) {
+			throw new UnauthorizedAccessException("User not registered! ");
+		}
+		else {
+			Users user = optional.get();
+             TokenHandling tokenHandling = new TokenHandling();
+		     String token = tokenHandling.generateToken(
+				     new User(username,password,authorities)
+				     );
+		     String name = user.getName();
+		     Long profile_id = user.getProfile_id();
+		     String profile_picture = user.getProfile_picture();
+		     
+		     return new AuthenticatedResponse(profile_id,name,profile_picture,token);
+		}
 	}
 
 }

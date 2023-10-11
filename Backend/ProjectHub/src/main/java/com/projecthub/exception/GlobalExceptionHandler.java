@@ -64,7 +64,7 @@ public class GlobalExceptionHandler {  // Exception Handler
 	    @ExceptionHandler(MethodArgumentNotValidException.class)
 	    public ResponseEntity<MyErrorDetails> notValidExceptionHandler(MethodArgumentNotValidException ex, WebRequest req) {
 	        MyErrorDetails err = new MyErrorDetails();
-	        System.out.println("Hii");
+//	        System.out.println("Hii");
 	        err.setTimestamp(LocalDateTime.now());
 	        err.setMessage("Validation failed: " + ex.getMessage());
 	        err.setDetails(req.getDescription(false));

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import com.projecthub.model.RespToken;
+import com.projecthub.model.AuthenticatedResponse;
 import com.projecthub.model.Users;
 
 public interface UsersService {
@@ -16,7 +16,7 @@ public interface UsersService {
 	public List<Users> getAllUsers();
 	public Users updateUsers(Long id , Users user);
 	public String deleteUserById(Long id);
-	public RespToken generateJwtToken(String username, String password,
+	public AuthenticatedResponse generateJwtToken(String username, String password,
 			Collection<? extends GrantedAuthority> authorities);
 	
 }

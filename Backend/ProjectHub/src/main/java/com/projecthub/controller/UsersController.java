@@ -9,9 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,10 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projecthub.exception.EntryNotFoundException;
+import com.projecthub.model.AuthenticatedResponse;
 import com.projecthub.model.LoginCreds;
-import com.projecthub.model.RespToken;
 import com.projecthub.model.Users;
-import com.projecthub.securityConfig.TokenHandling;
 import com.projecthub.service.UsersService;
 
 import jakarta.validation.Valid;
@@ -98,7 +94,7 @@ public class UsersController {
 		
 	}
 	@PostMapping(value = "/signIn")
-	public ResponseEntity<RespToken> signInUsingUsernamePass(@RequestBody LoginCreds loginCreds) {
+	public ResponseEntity<AuthenticatedResponse> signInUsingUsernamePass(@RequestBody LoginCreds loginCreds) {
 		
 		Authentication authenticate = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginCreds.getUsername(), loginCreds.getPassword())
@@ -109,17 +105,16 @@ public class UsersController {
 		
 		String username = authenticate.getName();
 		String password = loginCreds.getPassword();
+				
+//		log.info(username+" : "+password);
 		
-		Collection<? extends GrantedAuthority> authorities = authenticate.getAuthorities();
-		
-		log.info(username+" : "+password);
-		RespToken token = userService
+		AuthenticatedResponse authenticatedResponse = userService
 				                 .generateJwtToken(
 				                      username,
 				                      password,
 				                      authenticate.getAuthorities());
 				
-		return new ResponseEntity<RespToken>(token,HttpStatus.ACCEPTED);
+		return new ResponseEntity<AuthenticatedResponse>(authenticatedResponse,HttpStatus.ACCEPTED);
 		
 	}
 }
