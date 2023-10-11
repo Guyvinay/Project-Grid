@@ -15,10 +15,10 @@ public class UserServiceImpl implements UsersService {
 
 	@Autowired
 	private UsersRepository usersRepository;
-	
+
 	@Override
 	public Users saveUsers(Users user) {
-		
+		user.setRole("ROLE_"+user.getRole().toUpperCase());
 		return usersRepository.save(user);
 	}
 

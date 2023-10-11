@@ -29,7 +29,7 @@ public class ProfileController {
 	@Autowired
 	private ProfileService profileService;
 	
-	@PostMapping(value = "/registerProfile")
+	@PostMapping(value = "/registerAdmin")
 	public ResponseEntity<Profile> saveProfile( @Valid @RequestBody Profile profile){
 		if(profile==null)
 			throw new EntryNotFoundException("Profile cannot be null, Value must be passed! ");
@@ -75,5 +75,13 @@ public class ProfileController {
 		return new ResponseEntity<String>(
 				profileService.deleteProfileById(id),HttpStatus.ACCEPTED);
 	}
+//	@GetMapping(value = "/adminSignIn")
+//	public String adminSignInUsingbasicAuth(Authentication authentication ) {
+////		System.out.println(authentication);
+//		if(authentication.getName()!=null)
+//			return authentication.getName() +"  Successfully Logged in..";
+//		return " Login Failed ...";
+//		
+//	}
 	
 }

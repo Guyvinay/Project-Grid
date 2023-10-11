@@ -36,9 +36,9 @@ public class Profile {
 	private String email;
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
-	@NotNull(message = "Role Cannot be null!")
+//	@NotNull(message = "Role Cannot be null!")
 	private String role;
-	@NotNull(message = "Name Cannot be null!")
+//	@NotNull(message = "Name Cannot be null!")
 	private String name;
 	private String profile_picture;
 	

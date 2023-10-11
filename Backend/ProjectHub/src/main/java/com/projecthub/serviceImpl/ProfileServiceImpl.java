@@ -16,6 +16,7 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired
 	private ProfileRepository profileRepository;
 	
+	
 	@Override
 	public Profile saveProfile(Profile profile) {
 		profile.setRole("ROLE_"+profile.getRole().toUpperCase());
