@@ -24,7 +24,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 	
 	Logger log = LoggerFactory.getLogger(JwtTokenGeneratorFilter.class);
@@ -33,7 +34,7 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+		log.info("Jwt Token Generator-> outSide IF");
         if (null != authentication) {
             SecretKey key = Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes());
             String jwt = Jwts.builder()
@@ -44,7 +45,7 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
                     .setIssuedAt(new Date())
                     .setExpiration(new Date(new Date().getTime()+ 30000000)) 
                     .signWith(key).compact();
-                       System.out.println("HIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+    		log.info("Jwt Token Generator-> inSide IF");
             response.setHeader(SecurityConstants.JWT_HEADER, jwt);
  
         }
@@ -72,46 +73,5 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 	}
 	
 	
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		
-//		if(authentication!=null) {
-//			log.info("Inside JWT Token Generator Filter");
-//			
-//			SecretKey secretKey = Keys.hmacShaKeyFor(
-//					                   SecurityConstants
-//					                   .JWT_KEY.getBytes()
-//					                   );
-//			
-//			String jwtToken = Jwts.builder()
-//					         .setIssuer("VINAY_KUMAR_SINGH")
-//					         .setSubject("JWT_Token_Generator")
-//					         .claim("username", authentication.getName())
-//					         .claim("authorities", 
-//					        		 PopulateAuthorities(
-//					        				 authentication.getAuthorities())
-//					        		 )
-//					         .setIssuedAt(new Date())
-//					         .setExpiration(new Date(new Date().getTime()+30000000))
-//					         .signWith(secretKey)
-//					         .compact();
-//			response.setHeader(SecurityConstants.JWT_HEADER, jwtToken);
-//		}
-//		
-//		filterChain.doFilter(request, response);
-//		
-//		
-//	}
-//	
-//	public String PopulateAuthorities(Collection<? extends GrantedAuthority> collection) {
-//		List<String> authorities = new ArrayList<>();
-//		for(GrantedAuthority auth : collection) {
-//			authorities.add(auth.getAuthority());
-//		}
-//		return String.join(",", authorities);
-//	}
-//	@Override
-//	public boolean shouldNotFilter(HttpServletRequest request) {
-//		return !request.getServletPath().equals("/projecthub/signIn");
-//	}
 
 }

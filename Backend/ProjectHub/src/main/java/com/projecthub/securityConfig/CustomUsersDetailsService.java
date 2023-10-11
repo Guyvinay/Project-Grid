@@ -31,14 +31,14 @@ public class CustomUsersDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<Users> optional = repository.findByEmail(username);
 		if(optional.isEmpty()) {
-			System.out.println("Not HIIIIIIIIIIIIIIIIIIIII");
+			System.out.println("Inside Custome UserDetails not Varified");
 			throw new UsernameNotFoundException("User not found with the Email: "+username);
 		}
 		else{
 			Users user = optional.get();
 			List<GrantedAuthority> grantedAuths = new ArrayList<>();
 			grantedAuths.add(new SimpleGrantedAuthority(user.getRole()));
-			System.out.println("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+			log.info("Inside Custome UserDetails Varified");
 			return new User(user.getEmail(),user.getPassword(),grantedAuths);
 		}
 	}
