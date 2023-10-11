@@ -13,11 +13,11 @@ import Swal from 'sweetalert2';
 })
 export class RegistrationComponent {
   user = {
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     address:'',
-    role:'',
     profile_picture:''
   };
   constructor(
@@ -30,10 +30,10 @@ export class RegistrationComponent {
   onSubmitRegisterUser(): void {
     
    const registrationData = {
-    name : this.user.name,
+    name : this.user.firstName+" "+this.user.lastName,
     email:this.user.email,
     password:this.user.password,
-    role:this.user.role
+    profile_picture:this.user.profile_picture
    }
 
    this.http.post(
