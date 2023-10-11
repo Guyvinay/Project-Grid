@@ -1,13 +1,21 @@
 package com.projecthub.serviceImpl;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.projecthub.exception.EntryNotFoundException;
+import com.projecthub.exception.UnauthorizedAccessException;
+import com.projecthub.model.AuthenticatedResponse;
 import com.projecthub.model.Users;
 import com.projecthub.repository.UsersRepository;
+import com.projecthub.securityConfig.TokenHandling;
 import com.projecthub.service.UsersService;
 
 @Service
@@ -15,10 +23,22 @@ public class UserServiceImpl implements UsersService {
 
 	@Autowired
 	private UsersRepository usersRepository;
+<<<<<<< HEAD
 
 	@Override
 	public Users saveUsers(Users user) {
 		user.setRole("ROLE_"+user.getRole().toUpperCase());
+=======
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	
+	@Override
+	public Users saveUsers(Users user) {
+		user.setRole("ROLE_"+user.getRole().toUpperCase());
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+>>>>>>> 20fc2b4c69dbfa16984c47e4bdc8c3ede0284f95
 		return usersRepository.save(user);
 	}
 
@@ -57,6 +77,30 @@ public class UserServiceImpl implements UsersService {
 		return usersRepository.findByEmail(email).orElseThrow(
 				()->new EntryNotFoundException("User with email: "+email+" not Found"));
 		
+	}
+
+
+	@Override
+	public AuthenticatedResponse generateJwtToken(String username, String password,
+			Collection<? extends GrantedAuthority> authorities) {
+		
+		Optional<Users> optional = usersRepository.findByEmail(username);
+		
+		if(optional.isEmpty()) {
+			throw new UnauthorizedAccessException("User not registered! ");
+		}
+		else {
+			Users user = optional.get();
+             TokenHandling tokenHandling = new TokenHandling();
+		     String token = tokenHandling.generateToken(
+				     new User(username,password,authorities)
+				     );
+		     String name = user.getName();
+		     Long profile_id = user.getProfile_id();
+		     String profile_picture = user.getProfile_picture();
+		     
+		     return new AuthenticatedResponse(profile_id,name,profile_picture,token);
+		}
 	}
 
 }

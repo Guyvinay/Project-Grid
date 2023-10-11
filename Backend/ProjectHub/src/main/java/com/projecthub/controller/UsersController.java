@@ -1,10 +1,17 @@
 package com.projecthub.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+<<<<<<< HEAD
+=======
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+>>>>>>> 20fc2b4c69dbfa16984c47e4bdc8c3ede0284f95
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,22 +23,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projecthub.exception.EntryNotFoundException;
+import com.projecthub.model.AuthenticatedResponse;
+import com.projecthub.model.LoginCreds;
 import com.projecthub.model.Users;
 import com.projecthub.service.UsersService;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping(value = "/projecthub")
 @CrossOrigin(value = "*")
+@Slf4j
 public class UsersController {
 
 	@Autowired
 	private UsersService userService;
 	
+<<<<<<< HEAD
 	
 	@PostMapping(value = "/registerUsers")
 	public ResponseEntity<Users> saveUsers(  @RequestBody Users user){
+=======
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
+	@PostMapping(value = "/register")
+	public ResponseEntity<Users> saveUsers( @Valid @RequestBody Users user){
+>>>>>>> 20fc2b4c69dbfa16984c47e4bdc8c3ede0284f95
 		if(user==null)
 			throw new EntryNotFoundException("User cannot be null, Value must be passed! ");
 		return new ResponseEntity<Users>(userService.saveUsers(user),HttpStatus.ACCEPTED);
@@ -76,6 +95,7 @@ public class UsersController {
 		return new ResponseEntity<String>(
 				userService.deleteUserById(id),HttpStatus.ACCEPTED);
 	}
+<<<<<<< HEAD
 //	@GetMapping(value = "/signIn")
 //	public String signInUsingbasicAuth(Authentication authentication ) {
 //		System.out.println(authentication.getName()==null);
@@ -85,4 +105,37 @@ public class UsersController {
 //		
 //	}
 	
+=======
+	@GetMapping(value = "/signIn")
+	public String signInUsingbasicAuth(Authentication authentication ) {
+		if(authentication.getName()!=null)
+			return authentication.getName() +"  Successfully Logged in..";
+		return " Login Failed ...";
+		
+	}
+	@PostMapping(value = "/signIn")
+	public ResponseEntity<AuthenticatedResponse> signInUsingUsernamePass(@RequestBody LoginCreds loginCreds) {
+		
+		Authentication authenticate = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginCreds.getUsername(), loginCreds.getPassword())
+				);
+		
+//		System.out.println(authenticate);
+		
+		
+		String username = authenticate.getName();
+		String password = loginCreds.getPassword();
+				
+//		log.info(username+" : "+password);
+		
+		AuthenticatedResponse authenticatedResponse = userService
+				                 .generateJwtToken(
+				                      username,
+				                      password,
+				                      authenticate.getAuthorities());
+				
+		return new ResponseEntity<AuthenticatedResponse>(authenticatedResponse,HttpStatus.ACCEPTED);
+		
+	}
+>>>>>>> 20fc2b4c69dbfa16984c47e4bdc8c3ede0284f95
 }
