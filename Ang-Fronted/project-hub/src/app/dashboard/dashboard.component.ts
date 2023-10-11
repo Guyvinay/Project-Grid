@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
+import { UserDetailsService } from '../user-details.service';
+import { Users } from '../users';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,8 +10,36 @@ import { initFlowbite } from 'flowbite';
 })
 export class DashboardComponent implements OnInit {
 
+  userData !: Users;
+  
+  constructor(
+    private userDetailsService : UserDetailsService
+  ){  
+  }
+
   ngOnInit(): void {
     initFlowbite();
+
+    const storedUserData = localStorage.getItem('userData')
+
+    if(storedUserData){
+      this.userData=JSON.parse(storedUserData);
+    }else{
+      this.userData=this.userDetailsService.getUserDetails();
+    }
+
   }
+
+  logOutUser(){
+
+    this.userDetailsService.clearUserData();
+
+    localStorage.removeItem('userData')
+  }
+
+ 
+
+
+  
 
 }

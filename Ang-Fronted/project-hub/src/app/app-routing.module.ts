@@ -7,7 +7,7 @@ import { AddProjectComponent } from './project-management/add-project/add-projec
 import { UserLoginComponent } from './user-management/user-login/user-login.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'/registration', pathMatch:'full'},
+  {path:'', redirectTo:'/login', pathMatch:'full'},
   {path:'registration', component:RegistrationComponent},
   {path:'login', component:UserLoginComponent},
   {path:'dashboard', component:DashboardComponent},

@@ -26,6 +26,7 @@ import { MatTableModule } from '@angular/material/table';
 import { AddProjectComponent } from './project-management/add-project/add-project.component';
 import { ListProjectComponent } from './project-management/list-project/list-project.component';
 import { UserLoginComponent } from './user-management/user-login/user-login.component';
+import { UserDetailsService } from './user-details.service';
 
 
 
@@ -61,7 +62,9 @@ import { UserLoginComponent } from './user-management/user-login/user-login.comp
     MatCardModule,
     MatTableModule,
   ],
-  providers: [],
+  providers: [
+    UserDetailsService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

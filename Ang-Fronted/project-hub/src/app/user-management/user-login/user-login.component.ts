@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserDetailsService } from 'src/app/user-details.service';
+import { Users } from 'src/app/users';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,56 +12,52 @@ import Swal from 'sweetalert2';
 })
 export class UserLoginComponent {
 
+  responseUserData:Users={
+    profile_id: '',
+    email: '',
+    name: '',
+    profile_picture: '',
+    jwt_token: ''
+  }
 
   userCreds = {
-    loginEmail:'',
-    loginPassword:'',
-
+    username:'',
+    password:'',
   }
 
   baseLoginUrl :string = 'http://localhost:8888/projecthub/signIn';
 
   constructor( 
     private http : HttpClient,
-    private router : Router
+    private router : Router,
+    private userDetailsService : UserDetailsService
   ){}
 
   loginUser(){
-    const requestbody = {
-           username : this.userCreds.loginEmail,
-           password : this.userCreds.loginPassword
-    }
-   // Define the HTTP headers
-   const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
-  console.log(requestbody)
-
-    this.http.post(
-      this.baseLoginUrl,
-      requestbody,
-      httpOptions
-    )
+    this.userDetailsService.userLogin(this.userCreds.username,this.userCreds.password)
     .subscribe(
       (response)=>{
-        Swal.fire('Congratulations', 'You have Successfully Logged-In... It is time for you to Explore Yourself...', 'success');
-        console.log(response);
+        
+        this.responseUserData = response;
+        console.log(this.responseUserData);
+        this.userDetailsService.setUserDetails(this.responseUserData);
 
+        localStorage.setItem('userData',JSON.stringify(this.responseUserData));
+
+        Swal.fire(`Hello ${this.responseUserData.name}`,"You have Successfully Logged-in...",'success');
         setTimeout(()=>{
           this.router.navigate(['/dashboard']);
         },2000);
-
       },
       (error)=>{
         Swal.fire('Ewwww...', 'Login Failed... PLease Go to Hell... And Enter Correct Credentials from there....', 'error');
         console.log(error);
-        
       }
     )
 
+  }
+  routeToRegister(){
+    this.router.navigate(['/registration']);
   }
 
 }
