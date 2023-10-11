@@ -1,0 +1,29 @@
+<p>add-project works!</p>
+<div class="form-field">
+    <mat-card class="registration-container">
+
+      <form (ngSubmit)="onSubmit()" class="formEl">
+        <mat-form-field class="form-group">
+          <mat-label>Project Name</mat-label>
+          <input matInput type="text" class="form-input" name="name" [(ngModel)]="project.name" required>
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+          <mat-label>Description</mat-label>
+          <input matInput type="text" class="form-input" name="desc" [(ngModel)]="project.desc" required>
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+          <mat-label>Start Date</mat-label>
+          <input matInput type="text" class="form-input" name="password" [(ngModel)]="project.start_date" required>
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+          <mat-label>End Date</mat-label>
+          <input matInput type="text" class="form-input" name="address" [(ngModel)]="project.end_date" required>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Register</button>
+      </form>
+    </mat-card>
+
+</div>

@@ -1,0 +1,23 @@
+
+<div class="add-project">
+  <button mat-raised-button color="primary" (click)="showAddProjects()">
+    Add Projects
+  </button>
+  <div  *ngIf="isAddProjects" >
+    <h2>Add Projects</h2>
+    <app-add-project></app-add-project>
+  </div>
+</div>
+
+ <div class="project-list">
+  <button mat-raised-button color="primary" (click)="listAllProjects()">
+    Show All Projects
+  </button>
+  <div *ngIf="isListProjects">
+    <h2>Projects-List</h2>
+    <app-list-project></app-list-project>
+  </div>
+    
+</div>
+
+
