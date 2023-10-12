@@ -25,8 +25,6 @@ export class UserLoginComponent {
     password:'',
   }
 
-  baseLoginUrl :string = 'http://localhost:8888/projecthub/signIn';
-
   constructor( 
     private http : HttpClient,
     private router : Router,
@@ -50,7 +48,7 @@ export class UserLoginComponent {
         },2000);
       },
       (error)=>{
-        Swal.fire('Ewwww...', 'Login Failed... PLease Go to Hell... And Enter Correct Credentials from there....', 'error');
+        Swal.fire('Ohhhhh...', 'Login Failed... PLease Breath and Try Entering Correct Credentials Again... ', 'error');
         console.log(error);
       }
     )

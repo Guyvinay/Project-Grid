@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminAuthsComponent } from './admin-auths/admin-auths.component';
 import { AddProjectComponent } from './project-management/add-project/add-project.component';
 import { UserLoginComponent } from './user-management/user-login/user-login.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/login', pathMatch:'full'},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path:'login', component:UserLoginComponent},
   {path:'dashboard', component:DashboardComponent},
   {path:'admin', component:AdminAuthsComponent},
-  {path:'addProject', component:AddProjectComponent}
+  {path:'addProject', component:AddProjectComponent},
+  {path:'userm', component:UserManagementComponent}
 ];
 
 @NgModule({

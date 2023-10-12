@@ -33,9 +33,10 @@ export class AddProjectComponent {
       start_date:this.project.start_date,
       end_date:this.project.end_date
     }
+    console.log(projectData)
 
     this.http.post(
-      'http://localhost:8080/projecthub/projects/register',
+      'http://localhost:8888/projecthub/projects/register',
       projectData
     )
     .subscribe(

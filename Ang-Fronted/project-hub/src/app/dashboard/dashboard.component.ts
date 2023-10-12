@@ -24,17 +24,20 @@ export class DashboardComponent implements OnInit {
 
     if(storedUserData){
       this.userData=JSON.parse(storedUserData);
-    }else{
+    }else if(this.userDetailsService.getUserDetails()) {
       this.userData=this.userDetailsService.getUserDetails();
+    }else{
+      this.userData.name='Your name goes here'
+      this.userData.email='Your email goes here'
     }
-
+      
   }
 
   logOutUser(){
 
     this.userDetailsService.clearUserData();
 
-    localStorage.removeItem('userData')
+    localStorage.removeItem('userData');
   }
 
  
