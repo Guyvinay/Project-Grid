@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Users } from './users';
+import { ResponseUsers } from './interfaces/responseUser';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserLoginComponent } from './user-management/user-login/user-login.component';
 
@@ -9,13 +9,13 @@ import { UserLoginComponent } from './user-management/user-login/user-login.comp
 export class UserDetailsService {
 
   baseLoginUrl :string = 'http://localhost:8888/projecthub/signIn';
-  userDetails!: Users;
+  userDetails!: ResponseUsers;
 
   constructor(
     private http : HttpClient,
   ) { }
 
-  setUserDetails(userData:Users){
+  setUserDetails(userData:ResponseUsers){
     this.userDetails=userData;
   }
   getUserDetails(){
@@ -36,7 +36,7 @@ export class UserDetailsService {
       }
       console.log(username+" "+password)
 
-      return this.http.post<Users>(this.baseLoginUrl,loginData,httpOptions)
+      return this.http.post<ResponseUsers>(this.baseLoginUrl,loginData,httpOptions)
     }
 
     clearUserData(){

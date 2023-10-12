@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { UserDetailsService } from '../user-details.service';
-import { Users } from '../users';
+import { ResponseUsers } from '../interfaces/responseUser';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Project } from '../interfaces/projects';
+import { ProductService } from '../services/product.service';
+import { Users } from '../interfaces/users';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,10 +14,16 @@ import { Users } from '../users';
 })
 export class DashboardComponent implements OnInit {
 
-  userData !: Users;
+  responseUsers !: ResponseUsers;
+  respProjects !: Project[] ;
+  respProductsUsers !: Users[];
+
+ 
   
   constructor(
-    private userDetailsService : UserDetailsService
+    private userDetailsService : UserDetailsService,
+    private http : HttpClient,
+    private productsService : ProductService
   ){  
   }
 
@@ -21,14 +31,12 @@ export class DashboardComponent implements OnInit {
     initFlowbite();
 
     const storedUserData = localStorage.getItem('userData')
-
     if(storedUserData){
-      this.userData=JSON.parse(storedUserData);
-    }else if(this.userDetailsService.getUserDetails()) {
-      this.userData=this.userDetailsService.getUserDetails();
-    }else{
-      this.userData.name='Your name goes here'
-      this.userData.email='Your email goes here'
+      this.responseUsers=JSON.parse(storedUserData);
+      // console.log(this.userData.jwt_token)
+    }else {
+      this.responseUsers=this.userDetailsService.getUserDetails();
+      // console.log(this.userData)
     }
       
   }
@@ -40,8 +48,23 @@ export class DashboardComponent implements OnInit {
     localStorage.removeItem('userData');
   }
 
- 
 
+  showProjects(){
+    console.log(this.responseUsers.jwt_token);
+
+    this.productsService.getAllProducts(this.responseUsers.jwt_token)
+                    .subscribe(
+                      (res)=>{
+                        this.respProjects=res;
+                        this.respProductsUsers=this.respProjects[9].users
+                        console.log(this.respProductsUsers)
+                      },
+                    (err)=>{
+                      console.log(err);
+                    }
+                    )
+
+  }
 
   
 

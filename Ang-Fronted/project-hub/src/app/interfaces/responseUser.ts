@@ -1,4 +1,4 @@
-export interface Users {
+export interface  ResponseUsers {
     
     profile_id:string;
     email:string;
