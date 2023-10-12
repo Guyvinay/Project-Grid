@@ -1,13 +1,16 @@
 package com.projecthub.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projecthub.exception.EntryNotFoundException;
 import com.projecthub.model.Projects;
+import com.projecthub.model.Users;
 import com.projecthub.repository.ProjectsRepository;
+import com.projecthub.repository.UsersRepository;
 import com.projecthub.service.ProjectsService;
 
 @Service
@@ -16,8 +19,21 @@ public class ProjectsServiceImpl implements ProjectsService {
 	@Autowired
 	private ProjectsRepository projectsRepository;
 	
+	@Autowired
+	private UsersRepository usersRepository;
+	
 	@Override
 	public Projects saveProjects(Projects project) {
+		
+		List<String> users = project.getToAddUsers();
+		for(String str : users) {
+			Users user = usersRepository.findByEmail(str)
+					.orElseThrow(()-> new EntryNotFoundException("This user doesn't exists!"));
+			System.out.println(user.getName());
+			project.getUsers().add(user);
+			user.getProjects().add(project);
+		}
+		
 		return projectsRepository.save(project);
 		
 	}

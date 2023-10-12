@@ -53,6 +53,7 @@ public class SecurityConfiguration {
 			   .requestMatchers(HttpMethod.POST,"/projecthub/register").permitAll()
 			   .requestMatchers(HttpMethod.POST,"/projecthub/signIn").permitAll()
 			   .requestMatchers(HttpMethod.POST,"/projecthub/registerProfile").permitAll()
+			   .requestMatchers(HttpMethod.POST,"/projecthub/projects/register").permitAll()
 			   .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
 			       .anyRequest()
 			       .authenticated();
@@ -60,7 +61,6 @@ public class SecurityConfiguration {
 		   .csrf(csrf->csrf.disable())
 		   .addFilterAfter(new JwtTokenGeneratorFilter(), BasicAuthenticationFilter.class)
 		   .addFilterBefore(new JwtTokenValidatorFilter(), BasicAuthenticationFilter.class)
-		   .addFilterBefore(new JwtTokenGeneratorFilter(), AuthorizationFilter.class)
 		   .formLogin(Customizer.withDefaults())
 		   .httpBasic(Customizer.withDefaults())
 		;

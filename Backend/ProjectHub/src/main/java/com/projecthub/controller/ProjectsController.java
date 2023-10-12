@@ -20,20 +20,22 @@ import com.projecthub.model.Projects;
 import com.projecthub.service.ProjectsService;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping(value = "/projecthub/projects")
 @CrossOrigin(value = "*")
+@Slf4j
 public class ProjectsController {
 
 	@Autowired
 	private ProjectsService projectsService;
 	
 	@PostMapping(value = "/register")
-	public ResponseEntity<Projects> saveProjects( @Valid @RequestBody Projects user){
-		if(user==null)
+	public ResponseEntity<Projects> saveProjects( @Valid @RequestBody Projects project){
+		if(project==null)
 			throw new EntryNotFoundException("Project cannot be null, Value must be passed! ");
-		return new ResponseEntity<Projects>(projectsService.saveProjects(user),HttpStatus.ACCEPTED);
+		return new ResponseEntity<Projects>(projectsService.saveProjects(project),HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping(value = "/projects/{id}")
@@ -41,14 +43,13 @@ public class ProjectsController {
 		if(id==null)
 			throw new EntryNotFoundException(
 					"Id cannot be null, Id must be passed! ");
-		
 		return new ResponseEntity<Projects>(
 				projectsService.getProjectById(id),HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping(value = "/projects")
 	public ResponseEntity<List<Projects>> getAllProjects(){
-		 
+		 log.info("From Projects Controller getAll Projects Method ");
 		return  new ResponseEntity<List<Projects>>(
 				projectsService.getAllProjects(),HttpStatus.ACCEPTED); 
 	}

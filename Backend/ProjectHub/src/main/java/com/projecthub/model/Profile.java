@@ -1,6 +1,5 @@
 package com.projecthub.model;
 
-import org.springframework.beans.factory.annotation.Value;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -14,7 +13,6 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,6 +39,7 @@ public class Profile {
 //	@NotNull(message = "Name Cannot be null!")
 	private String name;
 	private String profile_picture;
+	
 	
 	
 

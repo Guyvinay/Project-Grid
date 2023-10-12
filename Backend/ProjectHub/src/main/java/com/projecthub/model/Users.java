@@ -29,50 +29,48 @@ import lombok.Setter;
 @Setter
 public class Users extends Profile {
 
-	public Users(Projects project, Teams team, List<Tasks> task, List<Notifications> notifications) {
+	
+	
+	public Users(List<Projects> projects, List<Teams> teams, List<Tasks> task, List<Notifications> notifications) {
 		super();
-		this.project = project;
-		this.team = team;
+		this.projects = projects;
+		this.teams = teams;
 		this.task = task;
 		this.notifications = notifications;
 	}
-
 	public Users() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-     public Users(
+	public Users(
 			@NotBlank(message = "email can't be blank") @Email(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "email should be in proper format i.e : johndoe@example.com") String email,
-			String password, String role, String name, String profile_picture, Projects project, Teams team,
-			List<Tasks> task, List<Notifications> notifications) {
+			String password, String role, String name, String profile_picture) {
 		super(email, password, role, name, profile_picture);
-		this.project = project;
-		this.team = team;
-		this.task = task;
-		this.notifications = notifications;
+		// TODO Auto-generated constructor stub
 	}
 
-
-
-
-//	@ManyToMany
-//	@JoinTable(
-//			name = "user_project",
-//			joinColumns = { @JoinColumn(name = "user_id") }, 
-//			inverseJoinColumns = { @JoinColumn(name = "project_id") }
-//			)
-//	private List<Projects> projects;
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(
+			name = "user_project",
+			joinColumns = { @JoinColumn(name = "user_id") }, 
+			inverseJoinColumns = { @JoinColumn(name = "project_id") }
+			)
+	private List<Projects> projects = new ArrayList<>();
 	
 	
 	
-	@OneToOne
-	@JoinColumn(name = "project_id")
-	private Projects project;
+//	@OneToOne
+//	@JoinColumn(name = "project_id")
+//	private Projects project;
 
-	@ManyToOne
-	@JoinColumn(name = "team_id")
-	private Teams team;
+	@ManyToMany
+	@JoinTable(
+			name = "user_team",
+			joinColumns = { @JoinColumn(name = "user_id") }, 
+			inverseJoinColumns = { @JoinColumn(name = "team_id") }
+			)
+	private List<Teams> teams=new ArrayList<>();
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
@@ -86,6 +84,12 @@ public class Users extends Profile {
 			inverseJoinColumns = { @JoinColumn(name = "notification_id") }
 			)
 	private List<Notifications> notifications=new ArrayList<>();
+
+	@Override
+	public String toString() {
+		return "Users [projects=" + projects + ", teams=" + teams + ", task=" + task + ", notifications="
+				+ notifications + "]";
+	}
 	
 	
 }

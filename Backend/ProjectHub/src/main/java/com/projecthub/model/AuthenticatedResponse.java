@@ -13,6 +13,6 @@ public class AuthenticatedResponse {
 	private String email;
 	private String name;
 	private String profile_picture;
-	private String jwtToken;
+	private String jwt_token;
 	
 }
