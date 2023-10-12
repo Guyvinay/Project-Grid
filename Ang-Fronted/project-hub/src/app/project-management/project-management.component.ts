@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import Swal from 'sweetalert2';
+import { ProductService } from '../services/product.service';
+import { Project } from '../interfaces/projects';
 
 @Component({
   selector: 'app-project-management',
@@ -30,10 +32,11 @@ export class ProjectManagementComponent implements OnInit {
   projectList:any = [];
 
   constructor(
-    private http : HttpClient
-  ){}
-
-
+    private http : HttpClient,
+    private projectService : ProductService
+  ){
+    
+  }
 
 
 
@@ -81,6 +84,11 @@ export class ProjectManagementComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+
+  renderingSelectedProject(){
+  
   }
 
 }

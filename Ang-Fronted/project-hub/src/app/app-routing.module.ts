@@ -6,6 +6,7 @@ import { AdminAuthsComponent } from './admin-auths/admin-auths.component';
 import { AddProjectComponent } from './project-management/add-project/add-project.component';
 import { UserLoginComponent } from './user-management/user-login/user-login.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { ProjectManagementComponent } from './project-management/project-management.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/login', pathMatch:'full'},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path:'dashboard', component:DashboardComponent},
   {path:'admin', component:AdminAuthsComponent},
   {path:'addProject', component:AddProjectComponent},
-  {path:'userm', component:UserManagementComponent}
+  {path:'userm', component:UserManagementComponent},
+  {path:'projectm', component:ProjectManagementComponent}
 ];
 
 @NgModule({

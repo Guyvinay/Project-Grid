@@ -1,3 +1,10 @@
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'tailwindcss/screens';
+@import 'tailwindcss/variants';
+
 .form-field{
     margin-bottom: 100px;
     border: 1px dashed red;

@@ -130,10 +130,8 @@
          </li>
 
          <li>
-            <a 
-               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-               (click)="showProjects()"
-               >
+            <a class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+               (click)="showProjects()">
                <svg
                   class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                   aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -176,21 +174,22 @@
 <div class="p-4 sm:ml-64">
    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
 
-      <div class="grid grid-cols-3 gap-4">
-         <div *ngFor="let prod of respProjects" >
+      <div class="grid grid-cols-3 gap-4" *ngIf="!selectedProject">
+         <div *ngFor="let proj of respProjects">
             <div
-               class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+               class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+               (click)="renderingSelectedProject(proj)">
                <a>
-                  <img class="rounded-t-lg" [src]="prod.project_logo" alt="" />
+                  <img class="rounded-t-lg" [src]="proj.project_logo" alt="" />
                </a>
                <div class="p-5">
                   <a>
-                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{prod.name}}</h5>
+                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{proj.name}}</h5>
                   </a>
-                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{prod.description}}</p>
-                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{prod.start_date}}</p>
-                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{prod.end_date}}</p>
-                  <a 
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{proj.description}}</p>
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Start Date:- {{proj.start_date}}</p>
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">End Date:- {{proj.end_date}}</p>
+                  <a
                      class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                      Read more
                      <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -202,7 +201,62 @@
                </div>
             </div>
          </div>
-            
+
       </div>
+
+
+      <div class="p-4 w-full" *ngIf="selectedProject">
+         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+            <div class="grid grid-cols-1 gap-4 mb-4">
+
+               <div class="flex items-center justify-between h-10 rounded bg-gray-50 dark:bg-gray-800">
+                  <div><img [src]="selectedProject.project_logo" alt=""></div>
+                  <div class="grid grid-cols-1 w-64">
+                     <h3 >Project Members</h3>
+                     <div *ngFor="let user of selectedProject.users"
+                        class="flex space-x-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+                        <div class="flex">
+                           <div><img class="w-8 h-10 rounded-full" [src]="user.profile_picture" alt=""></div>
+                           <div class="font-medium dark:text-white">
+                              <div>{{user.name}}</div>
+                              <div class="text-sm text-gray-500 dark:text-gray-400">{{ user.email }}</div>
+                           </div>
+                        </div>
+                     </div>
+
+
+                  </div>
+               </div>
+
+               <div class="h-24 rounded bg-gray-50 dark:bg-gray-800">
+                  <p class="text-2xl text-gray-400 dark:text-gray-500">
+                     {{selectedProject.name}}
+                  </p>
+                  <p class="text-base text-gray-400 dark:text-gray-500">
+                     Description:- {{selectedProject.description }}
+                  </p>
+                  <p class="text-gray-300 text-gray-400 dark:text-gray-500">
+                     Project Start Date:- {{selectedProject.start_date }}
+                  </p>
+                  <p class="text-gray-300 text-gray-400 dark:text-gray-500">
+                     Project End Date:- {{selectedProject.end_date }}
+                  </p>
+               </div>
+
+            </div>
+
+            <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+               <p class="text-2xl text-gray-400 dark:text-gray-500">
+                  <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 18 18">
+                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 1v16M1 9h16" />
+                  </svg>
+               </p>
+            </div>
+
+         </div>
+      </div>
+
    </div>
 </div>

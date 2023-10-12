@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   responseUsers !: ResponseUsers;
   respProjects !: Project[] ;
   respProductsUsers !: Users[];
-
+  selectedProject !: Project;
  
   
   constructor(
@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
                       (res)=>{
                         this.respProjects=res;
                         this.respProductsUsers=this.respProjects[9].users
-                        console.log(this.respProductsUsers)
+                        console.log(this.respProductsUsers[0].name)
                       },
                     (err)=>{
                       console.log(err);
@@ -66,6 +66,12 @@ export class DashboardComponent implements OnInit {
 
   }
 
+
+  renderingSelectedProject(project:Project){
+    this.selectedProject = project;
+    this.productsService.selectedProjects(project);
+
+  }
   
 
 }

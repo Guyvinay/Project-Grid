@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Project } from '../interfaces/projects';
 import { Observable } from 'rxjs';
+import { ProjectManagementComponent } from '../project-management/project-management.component';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { Observable } from 'rxjs';
 export class ProductService {
 
   productUrl = 'http://localhost:8888/projecthub/projects/projects';
+  selectedProject!:Project;
 
   constructor(
     private http : HttpClient
@@ -26,6 +28,12 @@ export class ProductService {
       {headers}
     );
 
+  }
+
+
+  selectedProjects(project:Project){
+    this.selectedProject = project;
+    console.log(project)
   }
 
 }

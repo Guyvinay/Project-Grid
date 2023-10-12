@@ -27,6 +27,7 @@ import { AddProjectComponent } from './project-management/add-project/add-projec
 import { ListProjectComponent } from './project-management/list-project/list-project.component';
 import { UserLoginComponent } from './user-management/user-login/user-login.component';
 import { UserDetailsService } from './user-details.service';
+import { ProductService } from './services/product.service';
 
 
 
@@ -64,6 +65,7 @@ import { UserDetailsService } from './user-details.service';
   ],
   providers: [
     UserDetailsService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
