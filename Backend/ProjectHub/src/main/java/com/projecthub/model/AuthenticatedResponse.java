@@ -14,5 +14,6 @@ public class AuthenticatedResponse {
 	private String name;
 	private String profile_picture;
 	private String jwt_token;
+	private String role;
 	
 }

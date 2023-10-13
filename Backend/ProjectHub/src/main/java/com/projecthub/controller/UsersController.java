@@ -113,7 +113,7 @@ public class UsersController {
 				new UsernamePasswordAuthenticationToken(loginCreds.getUsername(), loginCreds.getPassword())
 				);
 		
-//		System.out.println(authenticate);
+		System.out.println(authenticate);
 		
 		
 		String username = authenticate.getName();

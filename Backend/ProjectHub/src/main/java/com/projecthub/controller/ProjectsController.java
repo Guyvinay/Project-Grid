@@ -47,7 +47,7 @@ public class ProjectsController {
 				projectsService.getProjectById(id),HttpStatus.ACCEPTED);
 	}
 
-	@GetMapping(value = "/projects")
+	@GetMapping(value = "/allProjects")
 	public ResponseEntity<List<Projects>> getAllProjects(){
 		 log.info("From Projects Controller getAll Projects Method ");
 		return  new ResponseEntity<List<Projects>>(

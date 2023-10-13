@@ -20,14 +20,16 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 
 	@Override
+
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		String jwtToken = request.getHeader(SecurityConstants.JWT_HEADER);
-		
+		log.info(jwtToken);
 		if(jwtToken!=null) {
 			
 			try {
@@ -45,6 +47,8 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 				
 				String username = String.valueOf(claims.get("username"));
 				String authorities = (String)claims.get("authorities");
+				log.info(authorities);
+				System.out.println(authorities);
 				List<GrantedAuthority> authorityList = AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
 				Authentication authentication = new UsernamePasswordAuthenticationToken(username,null, authorityList);
 				
@@ -62,7 +66,7 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 	
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-		return request.getServletPath().equals("/signIn");
+		return request.getServletPath().equals("/projecthub/signIn");
 	}
 
 	

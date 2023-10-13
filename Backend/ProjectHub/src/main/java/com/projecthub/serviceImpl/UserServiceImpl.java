@@ -92,8 +92,10 @@ public class UserServiceImpl implements UsersService {
 		     String name = user.getName();
 		     Long profile_id = user.getProfile_id();
 		     String profile_picture = user.getProfile_picture();
+		     String role = user.getRole();
 		     
-		     return new AuthenticatedResponse(profile_id, userEmail, name,profile_picture,token);
+		     
+		     return new AuthenticatedResponse(profile_id, userEmail, name,profile_picture,token,role);
 		}
 	}
 

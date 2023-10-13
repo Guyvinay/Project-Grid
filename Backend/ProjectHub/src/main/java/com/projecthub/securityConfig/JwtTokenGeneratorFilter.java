@@ -34,18 +34,19 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		log.info("Jwt Token Generator-> outSide IF");
+		System.out.println(authentication);
+//		log.info("Jwt Token Generator-> outSide IF");
         if (null != authentication) {
             SecretKey key = Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes());
             String jwt = Jwts.builder()
-            		.setIssuer("Ram")
+            		.setIssuer("VINAY")
             		.setSubject("JWT Token")
                     .claim("username", authentication.getName())
                     .claim("authorities", populateAuthorities(authentication.getAuthorities()))
                     .setIssuedAt(new Date())
                     .setExpiration(new Date(new Date().getTime()+ 30000000)) 
                     .signWith(key).compact();
-    		log.info("Jwt Token Generator-> inSide IF");
+//    		log.info("Jwt Token Generator-> inSide IF");
             response.setHeader(SecurityConstants.JWT_HEADER, jwt);
  
         }
