@@ -28,6 +28,10 @@ import { ListProjectComponent } from './project-management/list-project/list-pro
 import { UserLoginComponent } from './user-management/user-login/user-login.component';
 import { UserDetailsService } from './user-details.service';
 import { ProductService } from './services/product.service';
+import { AdminDashboardComponent } from './dashboard/admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
+import { ManagerDashboardComponent } from './dashboard/manager-dashboard/manager-dashboard.component';
+import { LandingPageComponent } from './dashboard/landing-page/landing-page.component';
 
 
 
@@ -46,6 +50,10 @@ import { ProductService } from './services/product.service';
     AddProjectComponent,
     ListProjectComponent,
     UserLoginComponent,
+    AdminDashboardComponent,
+    UserDashboardComponent,
+    ManagerDashboardComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

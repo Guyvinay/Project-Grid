@@ -15,20 +15,20 @@
         <form class="space-y-6" (ngSubmit)="onSubmitRegisterUser()">
             <h5 class="text-xl font-medium text-gray-900 dark:text-white">Sign Up To Our platform</h5>
             <div>
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Your First Name </label>
-                <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Your First Name" name="firstName" [(ngModel)]="user.firstName" required>
+                <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Your First Name </label>
+                <input type="text"  id="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Your First Name" name="firstName" [(ngModel)]="user.firstName" required>
             </div>
             <div>
                 <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Your Last Name </label>
                 <input type="text"  id="lastName" placeholder="Your Last Name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" name="lastName" [(ngModel)]="user.lastName"  required>
             </div>
             <div>
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Profile Picture URL</label>
+                <label for="profile_picture" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Profile Picture URL</label>
                 <input type="text" id="profile_picture" placeholder="Profile Picture Url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" name="profile_picture" [(ngModel)]="user.profile_picture"  required>
             </div>
             <div>
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email </label>
-                <input type="email" name="email" id="email" placeholder="Enter Your Email " class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" name="email" [(ngModel)]="user.email"  required>
+                <input type="email" id="email" placeholder="Enter Your Email " class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" name="email" [(ngModel)]="user.email"  required>
             </div>
             <div>
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>

@@ -18,7 +18,9 @@ export class DashboardComponent implements OnInit {
   respProjects !: Project[] ;
   respProductsUsers !: Users[];
   selectedProject !: Project;
- 
+  isCreateProjectShown = false;
+
+
   
   constructor(
     private userDetailsService : UserDetailsService,
@@ -56,8 +58,7 @@ export class DashboardComponent implements OnInit {
                     .subscribe(
                       (res)=>{
                         this.respProjects=res;
-                        this.respProductsUsers=this.respProjects[9].users
-                        console.log(this.respProductsUsers[0].name)
+                        console.log(this.respProjects)
                       },
                     (err)=>{
                       console.log(err);
@@ -70,8 +71,58 @@ export class DashboardComponent implements OnInit {
   renderingSelectedProject(project:Project){
     this.selectedProject = project;
     this.productsService.selectedProjects(project);
+    
+  }
+
+
+
+
+
+  project = {
+    name:'',
+    desc:'',
+    project_logo:'',
+    start_date:'',
+    end_date:''
+  }
+
+  dataSource:any = [];
+
+
+  onSubmit():void{
+
+    const projectData = {
+      name:this.project.name,
+      description:this.project.desc,
+      project_logo:this.project.project_logo,
+      start_date:this.project.start_date,
+      end_date:this.project.end_date
+    }
+    console.log(projectData)
+
+    this.http.post(
+      'http://localhost:8888/projecthub/projects/register',
+      projectData
+    )
+    .subscribe(
+      (response)=>{
+        console.log(response);
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
+    
+  }
+
+  createNewProjects(){
+    this.isCreateProjectShown=!this.isCreateProjectShown;
+
+
 
   }
+
+  
   
 
 }

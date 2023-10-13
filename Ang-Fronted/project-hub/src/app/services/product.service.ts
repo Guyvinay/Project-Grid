@@ -9,7 +9,7 @@ import { ProjectManagementComponent } from '../project-management/project-manage
 })
 export class ProductService {
 
-  productUrl = 'http://localhost:8888/projecthub/projects/projects';
+  productUrl = 'http://localhost:8888/projecthub/projects/allProjects';
   selectedProject!:Project;
 
   constructor(

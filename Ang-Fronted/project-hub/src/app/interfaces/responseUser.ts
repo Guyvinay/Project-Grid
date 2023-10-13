@@ -5,5 +5,6 @@ export interface  ResponseUsers {
     name:string;
     profile_picture:string;
     jwt_token:string;
+    role:string
 
 }
