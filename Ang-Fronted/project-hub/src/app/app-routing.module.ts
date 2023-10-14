@@ -11,7 +11,6 @@ import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboar
 import { AdminDashboardComponent } from './dashboard/admin-dashboard/admin-dashboard.component';
 import { ManagerDashboardComponent } from './dashboard/manager-dashboard/manager-dashboard.component';
 import { LandingPageComponent } from './dashboard/landing-page/landing-page.component';
-import { ListProjectComponent } from './project-management/list-project/list-project.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/briefing', pathMatch:'full'},
@@ -23,11 +22,9 @@ const routes: Routes = [
   {path:'adminDashboard', component:AdminDashboardComponent},
   {path:'managerDashboard', component:ManagerDashboardComponent},
   {path:'admin', component:AdminAuthsComponent},
-  {path:'project', component:ProjectManagementComponent},
-  {path:'listProject', component:ListProjectComponent},
   {path:'addProject', component:AddProjectComponent},
   {path:'userm', component:UserManagementComponent},
-  {path:'createNewProject', component:AddProjectComponent}
+  {path:'projectm', component:ProjectManagementComponent}
 ];
 
 @NgModule({

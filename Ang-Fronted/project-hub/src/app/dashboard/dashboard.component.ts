@@ -6,7 +6,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Project } from '../interfaces/projects';
 import { ProductService } from '../services/product.service';
 import { Users } from '../interfaces/users';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,36 +18,27 @@ export class DashboardComponent implements OnInit {
   respProjects !: Project[] ;
   respProductsUsers !: Users[];
   selectedProject !: Project;
-
-  isElementShown = false;
-  isSelectedProjectShown = false;
-  isAllProjectShown = false;
-
-  isProjectSectionShown = false;
-
-
-  showProjectSection(){
-    this.isProjectSectionShown=!this.isProjectSectionShown;
-  }
+  isCreateProjectShown = false;
 
 
   
   constructor(
     private userDetailsService : UserDetailsService,
     private http : HttpClient,
-    private productsService : ProductService,
-    private router : Router
+    private productsService : ProductService
   ){  
   }
 
   ngOnInit(): void {
     initFlowbite();
 
-    const storedUserData = localStorage.getItem('userData');
+    const storedUserData = localStorage.getItem('userData')
     if(storedUserData){
       this.responseUsers=JSON.parse(storedUserData);
+      // console.log(this.userData.jwt_token)
     }else {
       this.responseUsers=this.userDetailsService.getUserDetails();
+      // console.log(this.userData)
     }
       
   }
@@ -72,8 +62,9 @@ export class DashboardComponent implements OnInit {
                       },
                     (err)=>{
                       console.log(err);
-                    });
-                    this.router.navigate(["/project"])
+                    }
+                    )
+
   }
 
 
@@ -124,11 +115,8 @@ export class DashboardComponent implements OnInit {
     
   }
 
-  isElementToBShown(){
-    this.isSelectedProjectShown=!this.isSelectedProjectShown;
-  }
-  isSelectedToBShown(){
-    this.isSelectedProjectShown=!this.isSelectedProjectShown;
+  createNewProjects(){
+    this.isCreateProjectShown=!this.isCreateProjectShown;
   }
 
 

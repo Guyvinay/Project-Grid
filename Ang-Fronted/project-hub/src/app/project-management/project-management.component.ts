@@ -3,9 +3,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ProductService } from '../services/product.service';
 import { Project } from '../interfaces/projects';
-import { ResponseUsers } from '../interfaces/responseUser';
-import { Users } from '../interfaces/users';
-import { UserDetailsService } from '../user-details.service';
 
 @Component({
   selector: 'app-project-management',
@@ -14,75 +11,84 @@ import { UserDetailsService } from '../user-details.service';
 })
 export class ProjectManagementComponent implements OnInit {
 
- 
-  responseUsers !: ResponseUsers;
-  respProjects !: Project[] ;
-  respProductsUsers !: Users[];
-  selectedProject !: Project;
-  
-  isElementShown = false;
-  isSelectedProjectShown = false;
-  isAllProjectShown = false;
-
-  isProjectSectionShown = false;
-
-
-  showProjectSection(){
-    this.isProjectSectionShown=!this.isProjectSectionShown;
+  project = {
+    name:'',
+    desc:'',
+    start_date:'',
+    end_date:''
   }
 
+  isAddProjects = false;
+  isListProjects = false;
 
-  
+  showAddProjects(){
+    this.isAddProjects=!this.isAddProjects;
+  }
+  listAllProjects(){
+    // Swal.fire('Congratulations', 'You have Successfully registered. Now You can Login... ', 'success');
+    this.isListProjects=!this.isListProjects
+  }
+
+  projectList:any = [];
+
   constructor(
-    private userDetailsService : UserDetailsService,
     private http : HttpClient,
-    private productsService : ProductService
-  ){  
+    private projectService : ProductService
+  ){
+    
   }
+
+
+
+
 
   ngOnInit(): void {
+   this.loadProjectListData();
+  }
 
-    const storedUserData = localStorage.getItem('userData')
-    if(storedUserData){
-      this.responseUsers=JSON.parse(storedUserData);
-      // console.log(this.userData.jwt_token)
-    }else {
-      this.responseUsers=this.userDetailsService.getUserDetails();
-      // console.log(this.userData)
+
+  onSubmit():void{
+
+    const projectData = {
+      name:this.project.name,
+      description:this.project.desc,
+      start_date:this.project.start_date,
+      end_date:this.project.end_date
     }
-      
-  }
 
-  logOutUser(){
-
-    this.userDetailsService.clearUserData();
-
-    localStorage.removeItem('userData');
-  }
-
-
-  showProjects(){
-    console.log(this.responseUsers.jwt_token);
-
-    this.productsService.getAllProducts(this.responseUsers.jwt_token)
-                    .subscribe(
-                      (res)=>{
-                        this.respProjects=res;
-                        console.log(this.respProjects)
-                      },
-                    (err)=>{
-                      console.log(err);
-                    }
-                    )
-
-  }
-
-  renderingSelectedProject( project : Project  ){
-    this.productsService.selectedProjects(project);
-  }
-
-  
-
+    this.http.post(
+      'http://localhost:8080/projecthub/projects/register',
+      projectData
+    )
+    .subscribe(
+      (response)=>{
+        console.log(response);
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
     
+  }
+
+  loadProjectListData():void{
+    this.http.get(
+      'http://localhost:8888/projecthub/projects/projects'
+    )
+    .subscribe(
+      (response)=>{
+        this.projectList = response;
+        console.log(response);
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
+  }
+
+
+  renderingSelectedProject(){
+  
+  }
 
 }
