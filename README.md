@@ -5,7 +5,7 @@
 
 ## **Introduction**
 
-Project-Grid is a project management tool that lets you get everything regarding your project under your wrist, whether it could be creating project, creating manager, assign them to project, sending notification, and much more.
+Project-Grid is a project management tool that lets you get everything regarding your project under your wrist, whether it could be creating project, creating manager, assign them to project, sending notification, and much more.(under developement)
 
 ## **Platform Access**
 
@@ -13,16 +13,16 @@ Access the ExploreNature platform through **[https://project-grid-index.app](pro
 
 ## **Feature Walkthrough**
 
-Watch our guided video walkthrough: **[Link to Feature Walkthrough](https://youtube-link-to-walkthrough/)**
+Watch our guided video walkthrough: **[Link to Feature Walkthrough]()**
 
 ## **Key Features**
 
-- Learn About Various Species
-- Dive Into Diverse Habitats
-- Challenge Yourself with Interactive Quizzes
-- Embark on a Virtual Nature Tour
-- Interact with Simulated AI Nature Guide
-- Discover Fun Facts About Nature
+- Robust Sign-in/soign-out
+- JWT token authenticated
+- Admin creating project, assigning managers, assigning users
+- Sending Notifications to user
+- View and manage all projects
+- Users can manage the projects he is associated with
 
 ## **Design Approach and Assumptions**
 
@@ -31,19 +31,19 @@ Watch our guided video walkthrough: **[Link to Feature Walkthrough](https://yout
 
 ## **Installation & Getting Started**
 
-1. Clone the repository: **`git clone <https://github.com/yourusername/explorenature.git>`**
+1. Clone the repository: **`git clone https://github.com/Guyvinay/Project-Grid.git`**
 2. Install dependencies: **`npm install`**
-3. Start the guided tour: **`npm start`**
+3. Start the guided tour: **`ng serve`**
 
 ## **User Journey**
 
-1. Log in using provided credentials.
-2. Explore the diverse species database.
-3. Dive into various habitats and their unique features.
-4. Engage in interactive quizzes to test your knowledge.
-5. Embark on a virtual nature tour, exploring captivating stops.
-6. Have fun interacting with our AI nature guide.
-7. Enjoy a random nature fact whenever you'd like.
+## **Welcome Page View**
+![Screenshot 2023-10-14 092239](https://github.com/Guyvinay/Project-Grid/assets/119345842/66660711-cfa4-453b-8d96-2a192fa73083)
+
+## **Admin View **
+![Screenshot 2023-10-14 091951](https://github.com/Guyvinay/Project-Grid/assets/119345842/e2bf1157-e3af-4c9f-adc1-96cbfe492622)
+## **User View **
+![Screenshot 2023-10-14 092017](https://github.com/Guyvinay/Project-Grid/assets/119345842/1badc18b-c054-44e8-8dff-6321cc432965)
 
 ## **API Endpoints**
 
@@ -52,24 +52,11 @@ Watch our guided video walkthrough: **[Link to Feature Walkthrough](https://yout
 - **`POST /api/auth/register`** - Register a new user.
 - **`POST /api/auth/login`** - Log in an existing user.
 
-### **Species**
-
-- **`GET /api/species`** - Retrieve all species.
-- **`GET /api/species/:id`** - Retrieve species details.
-
-### **Habitats**
-
-- **`GET /api/habitats`** - Retrieve all habitats.
-- **`GET /api/habitats/:id`** - Retrieve habitat details.
-
-... (include more API endpoints as needed)
-
 ## **Technology Stack**
 
-- Front-end: React.js
-- Back-end: Node.js, Express.js
-- Database: PostgreSQL
-- Simulated AI Nature Guide: Basic decision-tree interaction
-- Fun Fact Generator: Placeholder nature-related facts
+- Front-end:Angular,Tailwind css, Typescript
+- Back-end: Java, Spring Boot
+- Database: MySql
+
 
 ---
