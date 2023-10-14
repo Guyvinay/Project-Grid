@@ -32,6 +32,7 @@ import { AdminDashboardComponent } from './dashboard/admin-dashboard/admin-dashb
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import { ManagerDashboardComponent } from './dashboard/manager-dashboard/manager-dashboard.component';
 import { LandingPageComponent } from './dashboard/landing-page/landing-page.component';
+import { UnitProjectComponent } from './project-management/unit-project/unit-project.component';
 
 
 
@@ -54,6 +55,7 @@ import { LandingPageComponent } from './dashboard/landing-page/landing-page.comp
     UserDashboardComponent,
     ManagerDashboardComponent,
     LandingPageComponent,
+    UnitProjectComponent,
   ],
   imports: [
     BrowserModule,

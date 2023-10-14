@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { ResponseUsers } from './interfaces/responseUser';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserLoginComponent } from './user-management/user-login/user-login.component';
+import { Observable } from 'rxjs';
+import { Users } from './interfaces/users';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,9 @@ import { UserLoginComponent } from './user-management/user-login/user-login.comp
 export class UserDetailsService {
 
   baseLoginUrl :string = 'http://localhost:8888/projecthub/signIn';
+  baseUserUrl = 'http://localhost:8888/projecthub/users';
+
+
   userDetails!: ResponseUsers;
 
   constructor(
@@ -39,7 +44,19 @@ export class UserDetailsService {
       return this.http.post<ResponseUsers>(this.baseLoginUrl,loginData,httpOptions)
     }
 
-    clearUserData(){
+
+    getAllUsers(jwtToken: string):Observable<Users[]>{
+       return this.http.get<Users[]>(this.baseUserUrl,{
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${jwtToken}` // Pass the token here
+        })
+      });
+    }
+
+    
+
+    clearUserData() {
       
     }
 

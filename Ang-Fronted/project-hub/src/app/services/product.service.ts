@@ -20,7 +20,7 @@ export class ProductService {
   getAllProducts(jwtToken:String) : Observable<Project[]> {
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${jwtToken}` // Replace 'Bearer' with your token type if needed
+      'Authorization': `Bearer ${jwtToken}` 
     });
 
     return this.http.get<Project[]>(
