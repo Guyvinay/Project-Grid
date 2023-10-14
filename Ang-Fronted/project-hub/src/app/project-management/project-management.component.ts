@@ -6,6 +6,7 @@ import { Project } from '../interfaces/projects';
 import { ResponseUsers } from '../interfaces/responseUser';
 import { Users } from '../interfaces/users';
 import { UserDetailsService } from '../user-details.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project-management',
@@ -36,7 +37,8 @@ export class ProjectManagementComponent implements OnInit {
   constructor(
     private userDetailsService : UserDetailsService,
     private http : HttpClient,
-    private productsService : ProductService
+    private productsService : ProductService,
+    private route : Router
   ){  
   }
 
@@ -78,7 +80,9 @@ export class ProjectManagementComponent implements OnInit {
   }
 
   renderingSelectedProject( project : Project  ){
+    this.selectedProject = project;
     this.productsService.selectedProjects(project);
+    this.route.navigate(["/unitProject"]);
   }
 
   
