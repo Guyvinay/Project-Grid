@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Project } from 'src/app/interfaces/projects';
+import { Users } from 'src/app/interfaces/users';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -11,11 +12,28 @@ export class UnitProjectComponent implements OnInit {
 
   constructor(private projectService : ProductService){}
 
+  responseUsers !: ResponseUsers;
+  respProjects !: Project[] ;
+  respProductsUsers !: Users[];
+  isProjectSectionShown!:false;
+  isSelectedProjectShown!:false
+
+
 
   @Input()selectedProject!:Project;
 
   ngOnInit(): void {
     console.log(this.projectService.selectedProject)
+  }
+
+  logOutUser(){
+
+  }
+  showAllUsers(){
+    
+  }
+  renderingSelectedProject(proj:){
+    
   }
 
 }
