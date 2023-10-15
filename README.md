@@ -9,7 +9,7 @@ Project-Grid is a project management tool that lets you get everything regarding
 
 ## **Platform Access**
 
-Access the ExploreNature platform through **[https://project-grid-index.app](project-grid-index.vercel.app/)**
+Access the ExploreNature platform through **([project-grid-index.vercel.app/](https://project-grid.vercel.app/))**
 
 ## **Feature Walkthrough**
 
