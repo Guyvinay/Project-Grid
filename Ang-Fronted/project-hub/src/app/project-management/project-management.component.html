@@ -196,9 +196,9 @@
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         (click)="showProjects()"> Show Projects </button>
   </div>
+
+
   <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-
-
 
      <div class="grid grid-cols-3 gap-4" *ngIf="isProjectSectionShown">
 
@@ -231,47 +231,7 @@
 
      </div>
 
-     <div class="p-4 mt-4 w-full " *ngIf="isSelectedProjectShown">
-      <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-         <div class="grid grid-cols-1 gap-4 mb-4 mt-14">
-
-            <div class="flex items-center justify-between h-full rounded bg-gray-50 dark:bg-gray-800">
-               <div><img [src]="selectedProject.project_logo" alt=""></div>
-               <div class="grid grid-cols-1 w-64">
-                  <h3>Project Members</h3>
-                  <div *ngFor="let user of selectedProject.users"
-                     class="flex space-x-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-                     <div class="flex">
-                        <div><img class="w-8 h-10 rounded-full" [src]="user.profile_picture" alt=""></div>
-                        <div class="font-medium dark:text-white">
-                           <div>{{user.name}}</div>
-                           <div class="text-sm text-gray-500 dark:text-gray-400">{{ user.email }}</div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="h-24 rounded bg-gray-50 dark:bg-gray-800">
-               <p class="text-2xl text-gray-400 dark:text-gray-500">
-                  {{selectedProject.name}}
-               </p>
-               <p class="text-base text-gray-400 dark:text-gray-500">
-                  Description:- {{selectedProject.description }}
-               </p>
-               <p class="text-gray-300 text-gray-400 dark:text-gray-500">
-                  Project Start Date:- {{selectedProject.start_date }}
-               </p>
-               <p class="text-gray-300 text-gray-400 dark:text-gray-500">
-                  Project End Date:- {{selectedProject.end_date }}
-               </p>
-            </div>
-
-         </div>
-
-      </div>
-   </div>
-
+  
 
   </div>
 
