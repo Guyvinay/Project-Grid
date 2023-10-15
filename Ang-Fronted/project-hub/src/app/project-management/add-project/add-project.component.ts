@@ -62,7 +62,8 @@ export class AddProjectComponent {
   saveProject(){
     console.log(this.projectToBeCreated)
     this.http.post(
-      'http://localhost:8888/projecthub/projects/register',
+      // 'http://localhost:8888/projecthub/projects/register',
+      'https://project-grid-production.up.railway.app/projecthub/projects/register',
       this.projectToBeCreated
     )
     .subscribe(

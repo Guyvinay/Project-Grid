@@ -10,8 +10,10 @@ import { Users } from './interfaces/users';
 })
 export class UserDetailsService {
 
-  baseLoginUrl :string = 'http://localhost:8888/projecthub/signIn';
-  baseUserUrl = 'http://localhost:8888/projecthub/users';
+  // baseLoginUrl :string = 'http://localhost:8888/projecthub/signIn';
+  baseLoginUrl :string = 'https://project-grid-production.up.railway.app/projecthub/signIn';
+  // baseUserUrl = 'http://localhost:8888/projecthub/users';
+  baseUserUrl = 'https://project-grid-production.up.railway.app/projecthub/users';
 
 
   userDetails!: ResponseUsers;
