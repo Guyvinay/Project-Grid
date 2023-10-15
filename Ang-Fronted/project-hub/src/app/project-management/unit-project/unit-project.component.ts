@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Project } from 'src/app/interfaces/projects';
+import { ResponseUsers } from 'src/app/interfaces/responseUser';
 import { Users } from 'src/app/interfaces/users';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -32,7 +33,7 @@ export class UnitProjectComponent implements OnInit {
   showAllUsers(){
     
   }
-  renderingSelectedProject(proj:){
+  renderingSelectedProject(proj:Project){
     
   }
 
