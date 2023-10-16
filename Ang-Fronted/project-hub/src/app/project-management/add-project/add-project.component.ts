@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { Project, Projects } from 'src/app/interfaces/projects';
 import { ResponseUsers } from 'src/app/interfaces/responseUser';
@@ -53,18 +53,19 @@ export class AddProjectComponent {
       }
     )
 
- 
-      
-
-    
   }
 
   saveProject(){
-    console.log(this.projectToBeCreated)
+    console.log(this.projectToBeCreated);
+    const  token  =  this.responseUsers.jwt_token;
+   const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}` 
+  });
     this.http.post(
       // 'http://localhost:8888/projecthub/projects/register',
       'https://project-grid-production.up.railway.app/projecthub/projects/register',
-      this.projectToBeCreated
+      this.projectToBeCreated,
+      {headers}
     )
     .subscribe(
       (response)=>{
