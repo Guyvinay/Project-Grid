@@ -12,7 +12,6 @@ import { RegistrationComponent } from './user-management/registration/registrati
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Import ng-bootstrap module
-import { ToastrModule } from 'ngx-toastr'; // Import ngx-toastr module
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu'; // If you're using a mat-menu
@@ -21,7 +20,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input'; // Import input module
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
-import { AddProjectComponent } from './project-management/add-project/add-project.component';
 import { ListProjectComponent } from './project-management/list-project/list-project.component';
 import { UserLoginComponent } from './user-management/user-login/user-login.component';
 import { UserDetailsService } from './user-details.service';
@@ -44,7 +42,6 @@ import { UnitProjectComponent } from './project-management/unit-project/unit-pro
     TeamManagementComponent,
     DashboardComponent,
     RegistrationComponent,
-    AddProjectComponent,
     ListProjectComponent,
     UserLoginComponent,
     AdminDashboardComponent,

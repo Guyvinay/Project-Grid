@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import Swal from 'sweetalert2';
 import { ProductService } from '../services/product.service';
 import { Project } from '../interfaces/projects';
 import { ResponseUsers } from '../interfaces/responseUser';

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegistrationComponent } from './user-management/registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddProjectComponent } from './project-management/add-project/add-project.component';
 import { UserLoginComponent } from './user-management/user-login/user-login.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { ProjectManagementComponent } from './project-management/project-management.component';
@@ -24,9 +23,7 @@ const routes: Routes = [
   {path:'managerDashboard', component:ManagerDashboardComponent},
   {path:'project', component:ProjectManagementComponent},
   {path:'listProject', component:ListProjectComponent},
-  {path:'addProject', component:AddProjectComponent},
   {path:'userm', component:UserManagementComponent},
-  {path:'createNewProject', component:AddProjectComponent},
   {path:'unitProject', component:UnitProjectComponent},
 ];
 
