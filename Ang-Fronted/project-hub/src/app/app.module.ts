@@ -21,7 +21,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input'; // Import input module
 import { MatCardModule } from '@angular/material/card';
-import { AdminAuthsComponent } from './admin-auths/admin-auths.component'; // Import card module
 import { MatTableModule } from '@angular/material/table';
 import { AddProjectComponent } from './project-management/add-project/add-project.component';
 import { ListProjectComponent } from './project-management/list-project/list-project.component';
@@ -47,7 +46,6 @@ import { UnitProjectComponent } from './project-management/unit-project/unit-pro
     DashboardComponent,
     RegistrationComponent,
     NavigationComponent,
-    AdminAuthsComponent,
     AddProjectComponent,
     ListProjectComponent,
     UserLoginComponent,
