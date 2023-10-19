@@ -52,7 +52,6 @@ export class AddProjectComponent {
           console.log(users);
       }
     )
-
   }
 
   saveProject(){
@@ -62,8 +61,7 @@ export class AddProjectComponent {
     'Authorization': `Bearer ${token}` 
   });
     this.http.post(
-      // 'http://localhost:8888/projecthub/projects/register',
-      'https://project-grid-production.up.railway.app/projecthub/projects/register',
+      'http://localhost:8888/projecthub/projects/register',
       this.projectToBeCreated,
       {headers}
     )

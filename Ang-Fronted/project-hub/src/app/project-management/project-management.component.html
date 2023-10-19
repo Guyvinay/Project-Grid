@@ -178,61 +178,61 @@
 <div class="p-4 sm:ml-64">
 
 
-  <div
-     class="flex flex-wrap items-center justify-between  p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"
-     *ngIf="isProjectSectionShown">
-     <button
-        class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        (click)="showProjects()"> Show All Projects </button>
-     <button
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        (click)="showProjects()"> Show Pending Projects </button>
-     <button
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        (click)="showProjects()"> Show Completed Projects </button>
-     <button
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        (click)="showProjects()"> Show Projects </button><button
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        (click)="showProjects()"> Show Projects </button>
-  </div>
-
-
-  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-
-     <div class="grid grid-cols-3 gap-4" *ngIf="isProjectSectionShown">
-
-        <div *ngFor="let proj of respProjects">
-           <div
-              class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-              (click)="renderingSelectedProject(proj)">
-              <a>
-                 <img class="rounded-t-lg" [src]="proj.project_logo" alt="" />
-              </a>
-              <div class="p-5">
-                 <a>
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{proj.name}}</h5>
-                 </a>
-                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{proj.description}}</p>
-                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Start Date:- {{proj.start_date}}</p>
-                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">End Date:- {{proj.end_date}}</p>
-                 <a
-                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Read more
-                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                       viewBox="0 0 14 10">
-                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M1 5h12m0 0L9 1m4 4L9 9" />
-                    </svg>
-                 </a>
-              </div>
-           </div>
-        </div>
-
-     </div>
-
-  
-
-  </div>
-
-</div>
+   <div
+      class="flex flex-wrap items-center justify-between  p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"
+      *ngIf="isProjectSectionShown">
+      <button
+         class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+         (click)="showProjects()"> Show All Projects </button>
+      <button
+         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+         (click)="showProjects()"> Show Pending Projects </button>
+      <button
+         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+         (click)="showProjects()"> Show Completed Projects </button>
+      <button
+         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+         (click)="showProjects()"> Show Projects </button><button
+         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+         (click)="showProjects()"> Show Projects </button>
+   </div>
+ 
+ 
+   <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+ 
+      <div class="grid grid-cols-3 gap-4" *ngIf="isProjectSectionShown">
+ 
+         <div *ngFor="let proj of respProjects">
+            <div
+               class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+               (click)="renderingSelectedProject(proj)">
+               <a>
+                  <img class="rounded-t-lg" [src]="proj.project_logo" alt="" />
+               </a>
+               <div class="p-5">
+                  <a>
+                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{proj.name}}</h5>
+                  </a>
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{proj.description}}</p>
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Start Date:- {{proj.start_date}}</p>
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">End Date:- {{proj.end_date}}</p>
+                  <a
+                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                     Read more
+                     <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                           d="M1 5h12m0 0L9 1m4 4L9 9" />
+                     </svg>
+                  </a>
+               </div>
+            </div>
+         </div>
+ 
+      </div>
+ 
+   
+ 
+   </div>
+ 
+ </div>

@@ -9,8 +9,7 @@ import { ProjectManagementComponent } from '../project-management/project-manage
 })
 export class ProductService {
 
-  // productUrl = 'http://localhost:8888/projecthub/projects/allProjects';
-  productUrl = 'https://project-grid-production.up.railway.app/projecthub/projects/allProjects';
+  productUrl = 'http://localhost:8888/projecthub/projects/allProjects';
   selectedProject!:Project;
 
   constructor(
@@ -34,7 +33,7 @@ export class ProductService {
 
   selectedProjects(project:Project){
     this.selectedProject = project;
-    // console.log(project)
+    console.log(project)
   }
 
 }

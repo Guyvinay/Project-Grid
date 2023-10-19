@@ -49,9 +49,11 @@ export class UserLoginComponent {
 
         if( this.responseUserData.role == 'ROLE_ADMIN' ){
           this.adminService.setAdminDetails(this.responseUserData);
+
           localStorage.setItem('loggedInUserData',JSON.stringify(this.responseUserData));
           setTimeout(()=>{
-            this.router.navigate(['/dashboard']);
+            // this.router.navigate(['/dashboard']);
+            this.router.navigate(['/adminDashboard']);
           },2000);
           console.log('this is admin')
         }else if (this.responseUserData.role == 'ROLE_USER' ){

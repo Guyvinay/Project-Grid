@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class RegistrationService {
 
-  private apiUrl = 'https://project-grid-production.up.railway.app/customers';
+  private apiUrl = 'http://localhost:8080/customers';
 
   constructor(private http :HttpClient  ) { }
 

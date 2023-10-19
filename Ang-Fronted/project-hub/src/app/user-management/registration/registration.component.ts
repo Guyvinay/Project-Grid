@@ -37,8 +37,7 @@ export class RegistrationComponent {
    }
 
    this.http.post(
-    // 'http://localhost:8888/projecthub/register' , 
-    'https://project-grid-production.up.railway.app/projecthub/register' , 
+    'http://localhost:8888/projecthub/register' , 
     registrationData
    )
    .subscribe(
