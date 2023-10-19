@@ -24,3 +24,16 @@ export interface Projects {
     project_logo:string;
     toAddUsers:string[];
 }
+
+
+export interface ProjectModel {
+
+   
+    name:string;
+    description:string;
+    start_date:string;
+    end_date:string;
+    project_logo:string;
+    managerEmail : string;
+    teamsId : string[];
+}

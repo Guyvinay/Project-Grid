@@ -297,6 +297,7 @@
                                 </svg>
                             </button>
                         </h2>
+                        <!-- Creating Teams for the Project -->
                         <div id="accordion-nested-collapse-body-2" class="hidden"
                             aria-labelledby="accordion-nested-collapse-heading-2">
                             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
@@ -359,7 +360,7 @@
                                 class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
                                 data-accordion-target="#accordion-nested-collapse-body-3" aria-expanded="false"
                                 aria-controls="accordion-nested-collapse-body-3">
-                                <span>Can I use both?</span>
+                                <span>Create Project </span>
                                 <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -367,22 +368,82 @@
                                 </svg>
                             </button>
                         </h2>
+<!-- Create Project   -->
                         <div id="accordion-nested-collapse-body-3" class="hidden"
                             aria-labelledby="accordion-nested-collapse-heading-3">
                             <div class="p-5 border border-gray-200 dark:border-gray-700">
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">We actually recommend using both
-                                    Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason
-                                    stopping you from using the best of two worlds.</p>
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:
-                                </p>
-                                <ul class="pl-5 text-gray-500 list-disc dark:text-gray-400">
-                                    <li><a href="https://flowbite.com/pro/"
-                                            class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a>
-                                    </li>
-                                    <li><a href="https://tailwindui.com/" rel="nofollow"
-                                            class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a>
-                                    </li>
-                                </ul>
+                               
+                                <div class="p-4">
+                                    <p class="text-2xl font-bold text-center mt-14 mb-2">Create a New Project</p>
+                                  
+                                    <form #projectForm="ngForm" (ngSubmit)="createProject()" class="max-w-lg mx-auto bg-white rounded-lg p-6 shadow-md">
+                                      <div class="mb-4">
+                                        <label for="name" class="block text-gray-600 text-sm font-medium">Project Name</label>
+                                        <input type="text" id="name" name="name" [(ngModel)]="projectToBeCreated.name" required
+                                               class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300">
+                                      </div>
+                                    
+                                      <div class="mb-4">
+                                        <label for="description" class="block text-gray-600 text-sm font-medium">Project Description</label>
+                                        <textarea id="description" name="description" [(ngModel)]="projectToBeCreated.description"
+                                                  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300"></textarea>
+                                      </div>
+                                    
+                                      <div class="mb-4">
+                                        <label for="start_date" class="block text-gray-600 text-sm font-medium">Start Date</label>
+                                        <input type="date" id="start_date" name="start_date" [(ngModel)]="projectToBeCreated.start_date" required
+                                               class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300">
+                                      </div>
+                                    
+                                      <div class="mb-4">
+                                        <label for="end_date" class="block text-gray-600 text-sm font-medium">End Date</label>
+                                        <input type="date" id="end_date" name="end_date" [(ngModel)]="projectToBeCreated.end_date" required
+                                               class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300">
+                                      </div>
+                                    
+                                      <div class="mb-4">
+                                        <label for="name" class="block text-gray-600 text-sm font-medium">Project Logo</label>
+                                        <input type="text" id="name" name="name" [(ngModel)]="projectToBeCreated.project_logo" required
+                                               class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300">
+                                      </div>
+                                    
+                                      <div class="mb-4">
+                                        <label for="selectedUser" class="block text-gray-600 text-sm font-medium">Select Manager</label>
+                                        <select name="selectedUser" (change)="addManagerToProject(availableUsers[userDropdown.selectedIndex-1])" #userDropdown
+                                                class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300">
+                                           <option  >Choose Available Users </option>
+                                          <option *ngFor="let user of availableUsers" [value]="user">{{ user.name }}</option>
+                                        </select>
+                                      </div>
+
+                                      <div class="mb-4">
+                                        <label for="selectedUser" class="block text-gray-600 text-sm font-medium">Choose Teams For Project </label>
+                                        <select name="selectedUser" (change)="addTeamsToProject(availableTeams[teamsDropdown.selectedIndex-1])" #teamsDropdown
+                                                class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300">
+                                           <option >Choose Teams </option>
+                                          <option *ngFor="let team of availableTeams" [value]="team">{{ team.name }}</option>
+                                        </select>
+                                      </div>
+                                    
+                                      
+                                    
+                                      <button type="submit"
+                                              class="w-full bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg px-3 py-2 focus:ring focus:ring-blue-300">
+                                        Save Project
+                                      </button>
+                                   
+                                      <ul class="mb-4">
+                                       <li *ngFor="let team of projectToBeCreated.teamsId; let i = index"
+                                           class="flex items-center justify-between px-3 py-2 bg-blue-100 text-blue-700 border border-blue-300 rounded-lg mb-2">
+                                         {{ team }}
+                                         <button type="button" (click)="removeTeamFromProject(i)"
+                                                 class="text-sm font-medium text-red-600 focus:ring focus:ring-red-300">Remove</button>
+                                       </li>
+                                     </ul>
+                                    </form>
+                                  </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -413,6 +474,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>

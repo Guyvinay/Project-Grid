@@ -4,14 +4,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserLoginComponent } from './user-management/user-login/user-login.component';
 import { Observable } from 'rxjs';
 import { Users } from './interfaces/users';
+import { AppConfig } from './services/config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDetailsService {
 
-  baseLoginUrl :string = 'http://localhost:8888/projecthub/signIn';
-  baseUserUrl = 'http://localhost:8888/projecthub/users';
+  baseLoginUrl :string = AppConfig.baseUrl+'/projecthub/signIn';
+  baseUserUrl = AppConfig.baseUrl+'/projecthub/users';
 
 
   userDetails!: ResponseUsers;
@@ -46,7 +47,10 @@ export class UserDetailsService {
 
 
     getAllUsers(jwtToken: string):Observable<Users[]>{
-       return this.http.get<Users[]>(this.baseUserUrl,{
+      // console.log(jwtToken);
+       return this.http.get<Users[]>( 
+        this.baseUserUrl,
+        {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           Authorization: `Bearer ${jwtToken}` // Pass the token here

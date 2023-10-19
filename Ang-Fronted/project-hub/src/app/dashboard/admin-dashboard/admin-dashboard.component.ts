@@ -1,8 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Project, ProjectModel, Projects } from 'src/app/interfaces/projects';
 import { ResponseUsers } from 'src/app/interfaces/responseUser';
-import { Teams } from 'src/app/interfaces/teams';
+import { Team, Teams } from 'src/app/interfaces/teams';
 import { Users } from 'src/app/interfaces/users';
+import { AppConfig } from 'src/app/services/config.service';
+import { TeamService } from 'src/app/services/team.service';
 import { UserDetailsService } from 'src/app/user-details.service';
 import Swal from 'sweetalert2';
 
@@ -27,15 +30,27 @@ export class AdminDashboardComponent implements OnInit {
     usersToBeAdded : []
   }
 
+  projectToBeCreated : ProjectModel = {
+    name: '',
+    description: '',
+    start_date: '',
+    end_date: '',
+    project_logo: '',
+    managerEmail: '',
+    teamsId: []
+  };
 
 
-  availableUsers : Users[] = [];
+
   loggedInUser !: ResponseUsers;
+  availableUsers : Users[] = [];
+  availableTeams : Team[] = [];
 
 
   constructor(
     private userDetailsService : UserDetailsService,
-    private http : HttpClient
+    private http : HttpClient,
+    private teamsService : TeamService
   ){}
 
 
@@ -48,16 +63,30 @@ export class AdminDashboardComponent implements OnInit {
       this.loggedInUser = this.userDetailsService.getUserDetails();
     }
 
-
+// getting all users
     this.userDetailsService.getAllUsers(this.loggedInUser.jwt_token).subscribe(
       (resp)=>{
         this.availableUsers = resp;
-        console.log(this.availableUsers);
       },
       (error)=>{
-
+        console.log(error);
       }
-    )
+    );
+
+
+    // getting all tasks 
+
+    this.teamsService.getAllTeams(this.loggedInUser.jwt_token)
+    .subscribe(
+      (response)=>{
+        // console.log("Available Teams")
+        // console.log(response);
+        this.availableTeams = response;
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
 
   }
 
@@ -70,7 +99,7 @@ export class AdminDashboardComponent implements OnInit {
     'Authorization': `Bearer ${token}` 
   });
     this.http.post(
-      'http://localhost:8888/projectGrid/createTasks',
+      AppConfig.baseUrl+'/projectGrid/createTasks',
       this.taskToBeCreated,
       {headers}
     )
@@ -104,7 +133,7 @@ export class AdminDashboardComponent implements OnInit {
 
 
   this.http.post(
-    "http://localhost:8888/projectGrid/createTeams",
+    AppConfig.baseUrl+"/projectGrid/createTeams",
     this.teamToBeCreated,
     {headers}
   )
@@ -123,8 +152,8 @@ export class AdminDashboardComponent implements OnInit {
   }
   
   addUserToTeam(user : Users){
-    console.log("selected User")
-    console.log(user);
+    // console.log("selected User")
+    // console.log(user);
     // console.log(this.availableUsers);
     this.teamToBeCreated.usersToBeAdded.push(user.email);
   }
@@ -132,5 +161,51 @@ export class AdminDashboardComponent implements OnInit {
     this.teamToBeCreated.usersToBeAdded.splice(index,1);
   }
 
+
+
+
+  createProject(){
+
+    const  token  =  this.loggedInUser.jwt_token;
+    const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}` 
+  });
+
+  console.log(token);
+
+  this.http.post(
+    AppConfig.baseUrl+"/projecthub/projects/register",
+    this.projectToBeCreated,
+    {headers}
+  )
+  .subscribe(
+    (response)=>{
+      console.log("From Project Resonse")
+      console.log(response);
+      Swal.fire(`Wooohh Project Created`,`Project ${this.projectToBeCreated.name} Successfully Created And Assigned to Teams`,'success');
+    },
+    (error)=>{
+      console.log(error);
+      Swal.fire(`Opps`,`Project  ${this.projectToBeCreated.name} creation Failed `,'error');
+
+    }
+  )
+
+
+  }
+
+
+
+  addManagerToProject(manager: Users){
+    this.projectToBeCreated.managerEmail = manager.email;
+  }
+
+  addTeamsToProject(team : Team){
+    this.projectToBeCreated.teamsId.push(team.id);
+  }
+
+  removeTeamFromProject(index : number){
+    this.projectToBeCreated.teamsId.splice(index,1);
+  }
 
 }
