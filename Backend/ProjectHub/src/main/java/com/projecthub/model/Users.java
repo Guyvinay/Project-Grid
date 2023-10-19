@@ -31,9 +31,10 @@ public class Users extends Profile {
 
 	
 	
-	public Users(List<Projects> projects, List<Teams> teams, List<Tasks> task, List<Notifications> notifications) {
+	
+	public Users(Projects project, List<Teams> teams, List<Tasks> task, List<Notifications> notifications) {
 		super();
-		this.projects = projects;
+		this.project = project;
 		this.teams = teams;
 		this.task = task;
 		this.notifications = notifications;
@@ -48,22 +49,13 @@ public class Users extends Profile {
 		super(email, password, role, name, profile_picture);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	@OneToOne
+	@JoinColumn(name = "project_id")
+	private Projects project;
 
 	@JsonIgnore
-	@ManyToMany
-	@JoinTable(
-			name = "user_project",
-			joinColumns = { @JoinColumn(name = "user_id") }, 
-			inverseJoinColumns = { @JoinColumn(name = "project_id") }
-			)
-	private List<Projects> projects = new ArrayList<>();
-	
-	
-	
-//	@OneToOne
-//	@JoinColumn(name = "project_id")
-//	private Projects project;
-
 	@ManyToMany
 	@JoinTable(
 			name = "user_team",
@@ -72,7 +64,7 @@ public class Users extends Profile {
 			)
 	private List<Teams> teams=new ArrayList<>();
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Tasks> task=new ArrayList<>();
 	
@@ -84,12 +76,5 @@ public class Users extends Profile {
 			inverseJoinColumns = { @JoinColumn(name = "notification_id") }
 			)
 	private List<Notifications> notifications=new ArrayList<>();
-
-	@Override
-	public String toString() {
-		return "Users [projects=" + projects + ", teams=" + teams + ", task=" + task + ", notifications="
-				+ notifications + "]";
-	}
-	
 	
 }

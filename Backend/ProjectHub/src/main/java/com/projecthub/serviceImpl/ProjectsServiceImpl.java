@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.projecthub.exception.EntryNotFoundException;
 import com.projecthub.model.Projects;
+import com.projecthub.model.Teams;
 import com.projecthub.model.Users;
 import com.projecthub.repository.ProjectsRepository;
+import com.projecthub.repository.TeamsRepository;
 import com.projecthub.repository.UsersRepository;
 import com.projecthub.service.ProjectsService;
 
@@ -22,18 +24,22 @@ public class ProjectsServiceImpl implements ProjectsService {
 	@Autowired
 	private UsersRepository usersRepository;
 	
+	@Autowired
+	private TeamsRepository teamsRepository;
+	
 	@Override
 	public Projects saveProjects(Projects project) {
 		
-		List<String> users = project.getToAddUsers();
-		for(String str : users) {
-			Users user = usersRepository.findByEmail(str)
-					.orElseThrow(()-> new EntryNotFoundException("This user doesn't exists!"));
-			System.out.println(user.getName());
-			project.getUsers().add(user);
-			user.getProjects().add(project);
-		}
+		Users manager = usersRepository.findByEmail(project.getManagerEmail()).get();
 		
+		List<String> teamsId = project.getTeamsId();
+		
+		for(String teamId : teamsId) {
+			Teams team = teamsRepository.findById(Long.parseLong(teamId)).get();
+			project.getTeams().add(team);
+			team.setProject(project);
+		}
+		project.setProject_manager(manager);
 		return projectsRepository.save(project);
 		
 	}
