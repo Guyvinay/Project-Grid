@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Import ng-bootstrap module
 import { ToastrModule } from 'ngx-toastr'; // Import ngx-toastr module
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu'; // If you're using a mat-menu
 import { MatButtonModule } from '@angular/material/button'; 
@@ -45,7 +44,6 @@ import { UnitProjectComponent } from './project-management/unit-project/unit-pro
     TeamManagementComponent,
     DashboardComponent,
     RegistrationComponent,
-    NavigationComponent,
     AddProjectComponent,
     ListProjectComponent,
     UserLoginComponent,
