@@ -63,7 +63,7 @@ export class ProjectManagementComponent implements OnInit {
 
 
   showProjects(){
-    console.log(this.responseUsers.jwt_token);
+    // console.log(this.responseUsers.jwt_token);
 
     this.productsService.getAllProducts(this.responseUsers.jwt_token)
                     .subscribe(
@@ -81,7 +81,6 @@ export class ProjectManagementComponent implements OnInit {
   renderingSelectedProject( project : Project  ){
     this.selectedProject = project;
     this.productsService.selectedProjects(project);
-    this.route.navigate(["/unitProject"]);
   }
 
   

@@ -5,6 +5,7 @@ import { ResponseUsers } from 'src/app/interfaces/responseUser';
 import { Team, Teams } from 'src/app/interfaces/teams';
 import { Users } from 'src/app/interfaces/users';
 import { AppConfig } from 'src/app/services/config.service';
+import { ProjectService } from 'src/app/services/project.service';
 import { TeamService } from 'src/app/services/team.service';
 import { UserDetailsService } from 'src/app/user-details.service';
 import Swal from 'sweetalert2';
@@ -45,16 +46,19 @@ export class AdminDashboardComponent implements OnInit {
   loggedInUser !: ResponseUsers;
   availableUsers : Users[] = [];
   availableTeams : Team[] = [];
+  availableProjects !: Project[];
 
 
   constructor(
     private userDetailsService : UserDetailsService,
     private http : HttpClient,
-    private teamsService : TeamService
+    private teamsService : TeamService,
+    private projectService : ProjectService
   ){}
 
 
   ngOnInit(): void {
+
     const storedUserData = localStorage.getItem('loggedInUserData');
     // console.log(storedUserData);
     if(storedUserData){
@@ -67,6 +71,8 @@ export class AdminDashboardComponent implements OnInit {
     this.userDetailsService.getAllUsers(this.loggedInUser.jwt_token).subscribe(
       (resp)=>{
         this.availableUsers = resp;
+        console.log("Available Users");
+        console.log(this.availableUsers);
       },
       (error)=>{
         console.log(error);
@@ -79,14 +85,31 @@ export class AdminDashboardComponent implements OnInit {
     this.teamsService.getAllTeams(this.loggedInUser.jwt_token)
     .subscribe(
       (response)=>{
-        // console.log("Available Teams")
-        // console.log(response);
         this.availableTeams = response;
+        console.log("Available Teams");
+        console.log(this.availableTeams);
       },
       (error)=>{
         console.log(error);
       }
     );
+
+
+    // getting All Projects 
+
+    this.projectService.getAllProjects(this.loggedInUser.jwt_token)
+    .subscribe(
+      (response)=>{
+        this.availableProjects = response;
+        console.log("Available Projects");
+        console.log(response);
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
+
+
 
   }
 
@@ -207,5 +230,10 @@ export class AdminDashboardComponent implements OnInit {
   removeTeamFromProject(index : number){
     this.projectToBeCreated.teamsId.splice(index,1);
   }
+
+
+
+
+
 
 }
