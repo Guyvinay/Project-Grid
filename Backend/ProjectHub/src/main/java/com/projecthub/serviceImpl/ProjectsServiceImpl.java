@@ -40,6 +40,7 @@ public class ProjectsServiceImpl implements ProjectsService {
 			team.setProject(project);
 		}
 		project.setProject_manager(manager);
+//		manager.setProject(project);
 		return projectsRepository.save(project);
 		
 	}

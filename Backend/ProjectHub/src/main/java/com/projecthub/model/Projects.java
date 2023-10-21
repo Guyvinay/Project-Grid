@@ -33,16 +33,19 @@ public class Projects {
 	private LocalDate end_date;
 	
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "project")
 	private Users project_manager;
 	
+	@JsonIgnore
 	@Transient
 	private String managerEmail;
 	
+	@JsonIgnore
 	@Transient
 	private List<String> teamsId = new ArrayList<>();
 
 //	@JsonIgnore
 	@OneToMany(mappedBy = "project")
-	private List<Teams> teams=new ArrayList<>();;
+	private List<Teams> teams=new ArrayList<>();
 }

@@ -33,7 +33,7 @@ public class TokenHandling {
 						.setIssuedAt(new Date())
 						.setExpiration(new Date(new Date().getTime()+ 30000000)) 						.signWith(key,SignatureAlgorithm.HS256)
 						.compact();
-		log.info(token);
+//		log.info(token);
 		return token;
 	}	
 	

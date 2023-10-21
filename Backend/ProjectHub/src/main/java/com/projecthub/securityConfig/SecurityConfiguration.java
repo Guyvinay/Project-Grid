@@ -50,8 +50,8 @@ public class SecurityConfiguration {
 			})
 		   .authorizeHttpRequests(auth->{
 			   auth
-			   .requestMatchers(HttpMethod.POST,"/projecthub/register").permitAll()
-			   .requestMatchers(HttpMethod.POST,"/projecthub/signIn").permitAll()
+			   .requestMatchers(HttpMethod.POST,"/projecthub/register" , "/projecthub/registerProfile").permitAll()
+			   .requestMatchers(HttpMethod.POST,"/projecthub/signIn","/projecthub/profileSignIn").permitAll()
 			   .requestMatchers(HttpMethod.POST,"/projecthub/registerProfile").permitAll()
 			   .requestMatchers("/projecthub/projects/allProjects").hasRole("ADMIN")
 			   .requestMatchers("/projecthub/users").hasRole("ADMIN")

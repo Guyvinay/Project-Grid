@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projecthub.exception.EntryNotFoundException;
+import com.projecthub.model.AuthenticatedResponse;
+import com.projecthub.model.LoginCreds;
 import com.projecthub.model.Profile;
 import com.projecthub.service.ProfileService;
 
@@ -29,7 +34,11 @@ public class ProfileController {
 	@Autowired
 	private ProfileService profileService;
 	
-	@PostMapping(value = "/registerAdmin")
+	@Autowired
+	private AuthenticationManager authenticationManager;
+
+	
+	@PostMapping(value = "/registerProfile")
 	public ResponseEntity<Profile> saveProfile( @Valid @RequestBody Profile profile){
 		if(profile==null)
 			throw new EntryNotFoundException("Profile cannot be null, Value must be passed! ");
@@ -75,13 +84,24 @@ public class ProfileController {
 		return new ResponseEntity<String>(
 				profileService.deleteProfileById(id),HttpStatus.ACCEPTED);
 	}
-//	@GetMapping(value = "/adminSignIn")
-//	public String adminSignInUsingbasicAuth(Authentication authentication ) {
-////		System.out.println(authentication);
-//		if(authentication.getName()!=null)
-//			return authentication.getName() +"  Successfully Logged in..";
-//		return " Login Failed ...";
-//		
-//	}
+
+	@PostMapping(value = "/profileSignIn")
+	public ResponseEntity<AuthenticatedResponse> signInUsingUsernamePass(@RequestBody LoginCreds loginCreds) {
+		
+		Authentication authenticate = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginCreds.getUsername(), loginCreds.getPassword())
+				);
+		System.out.println(authenticate);
+		String username = authenticate.getName();
+		String password = loginCreds.getPassword();		
+		AuthenticatedResponse authenticatedResponse = profileService
+				                 .generateJwtToken(
+				                      username,
+				                      password,
+				                      authenticate.getAuthorities());
+				
+		return new ResponseEntity<AuthenticatedResponse>(authenticatedResponse,HttpStatus.ACCEPTED);
+		
+	}
 	
 }

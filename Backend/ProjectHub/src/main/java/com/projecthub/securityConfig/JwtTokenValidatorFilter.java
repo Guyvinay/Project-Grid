@@ -25,13 +25,11 @@ import lombok.extern.slf4j.Slf4j;
 public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 
 	@Override
-
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		String jwtToken = request.getHeader(SecurityConstants.JWT_HEADER);
 		log.info(jwtToken);
-		if(jwtToken!=null) {
-			
+		if(jwtToken!=null){
 			try {
 				
 				jwtToken = jwtToken.substring(7);
@@ -48,7 +46,6 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 				String username = String.valueOf(claims.get("username"));
 				String authorities = (String)claims.get("authorities");
 				log.info(authorities);
-				System.out.println(authorities);
 				List<GrantedAuthority> authorityList = AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
 				Authentication authentication = new UsernamePasswordAuthenticationToken(username,null, authorityList);
 				
@@ -66,7 +63,7 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 	
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-		return request.getServletPath().equals("/projecthub/signIn");
+		return request.getServletPath().equals("/projecthub/signIn") || request.getServletPath().equals("projecthub/profileSignIn") ;
 	}
 
 	

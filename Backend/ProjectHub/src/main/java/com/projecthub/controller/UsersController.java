@@ -88,15 +88,6 @@ public class UsersController {
 		return new ResponseEntity<String>(
 				userService.deleteUserById(id),HttpStatus.ACCEPTED);
 	}
-
-//	@GetMapping(value = "/signIn")
-//	public String signInUsingbasicAuth(Authentication authentication ) {
-//		System.out.println(authentication.getName()==null);
-//		if(authentication.getName()!=null)
-//			return authentication.getName() +"  Successfully Logged in..";
-//		return " Login Failed ...";
-//		
-//	}
 	
 
 	@GetMapping(value = "/signIn")
@@ -108,19 +99,13 @@ public class UsersController {
 	}
 	@PostMapping(value = "/signIn")
 	public ResponseEntity<AuthenticatedResponse> signInUsingUsernamePass(@RequestBody LoginCreds loginCreds) {
-		
+		System.out.println();
 		Authentication authenticate = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginCreds.getUsername(), loginCreds.getPassword())
 				);
-		
-		System.out.println(authenticate);
-		
-		
+//		System.out.println(authenticate);
 		String username = authenticate.getName();
-		String password = loginCreds.getPassword();
-				
-//		log.info(username+" : "+password);
-		
+		String password = loginCreds.getPassword();		
 		AuthenticatedResponse authenticatedResponse = userService
 				                 .generateJwtToken(
 				                      username,

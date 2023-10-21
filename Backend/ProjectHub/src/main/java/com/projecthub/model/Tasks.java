@@ -32,7 +32,7 @@ public class Tasks {
 	@Transient
 	private String userEmail;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private Users user;

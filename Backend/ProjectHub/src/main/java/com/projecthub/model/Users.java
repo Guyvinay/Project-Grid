@@ -29,9 +29,6 @@ import lombok.Setter;
 @Setter
 public class Users extends Profile {
 
-	
-	
-	
 	public Users(Projects project, List<Teams> teams, List<Tasks> task, List<Notifications> notifications) {
 		super();
 		this.project = project;
@@ -64,7 +61,7 @@ public class Users extends Profile {
 			)
 	private List<Teams> teams=new ArrayList<>();
 	
-//	@JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Tasks> task=new ArrayList<>();
 	
