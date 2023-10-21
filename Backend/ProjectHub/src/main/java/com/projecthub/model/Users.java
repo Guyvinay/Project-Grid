@@ -47,7 +47,7 @@ public class Users extends Profile {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "project_id")
 	private Projects project;

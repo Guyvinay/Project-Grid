@@ -65,6 +65,19 @@ public class UsersController {
 		return  new ResponseEntity<List<Users>>(
 				userService.getAllUsers(),HttpStatus.ACCEPTED); 
 	}
+	
+	@GetMapping(value = "/usersByRoleUser")
+	public ResponseEntity<List<Users>> getAllUsersByRoleUser(){
+		
+		return  new ResponseEntity<List<Users>>(
+				userService.getAllUsersByRoleUser(),HttpStatus.ACCEPTED); 
+	}
+	@GetMapping(value = "/usersByRoleManager")
+	public ResponseEntity<List<Users>> getAllUsersByRoleManager(){
+		
+		return  new ResponseEntity<List<Users>>(
+				userService.getAllUsersByRoleManager(),HttpStatus.ACCEPTED); 
+	}
 
 	@PutMapping(value = "/updateUser/{id}")
 	public ResponseEntity<Users> updateUsers(

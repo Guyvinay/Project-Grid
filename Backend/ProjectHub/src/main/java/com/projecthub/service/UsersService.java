@@ -14,6 +14,8 @@ public interface UsersService {
 	public Users getUserById(Long id);
 	public Users getUserByEmail(String email);
 	public List<Users> getAllUsers();
+	public List<Users> getAllUsersByRoleUser();
+	public List<Users> getAllUsersByRoleManager();
 	public Users updateUsers(Long id , Users user);
 	public String deleteUserById(Long id);
 	public AuthenticatedResponse generateJwtToken(String username, String password,

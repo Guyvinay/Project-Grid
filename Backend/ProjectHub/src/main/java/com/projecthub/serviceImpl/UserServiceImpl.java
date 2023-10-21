@@ -30,7 +30,7 @@ public class UserServiceImpl implements UsersService {
 	
 	@Override
 	public Users saveUsers(Users user) {
-		user.setRole("ROLE_USER");
+		user.setRole("ROLE_MANAGER");
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return usersRepository.save(user);
 	}
@@ -47,6 +47,18 @@ public class UserServiceImpl implements UsersService {
 		List<Users> list = usersRepository.findAll();
 		return list;
 	}
+	@Override
+	public List<Users> getAllUsersByRoleManager() {
+		List<Users> list = usersRepository.findAllUsersByRoleManager().get();
+		return list;
+	}
+	@Override
+	public List<Users> getAllUsersByRoleUser() {
+		List<Users> list = usersRepository.findAllUsersByRoleUser().get();
+		return list;
+	}
+	
+	
 
 	@Override
 	public Users updateUsers(Long id, Users user) {
