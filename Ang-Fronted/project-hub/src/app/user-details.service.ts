@@ -10,8 +10,11 @@ import { AppConfig } from './services/config.service';
 })
 export class UserDetailsService {
 
-  baseLoginUrl :string = AppConfig.baseUrl+'/projecthub/signIn';
-  baseUserUrl = AppConfig.baseUrl+'/projecthub/users';
+  // baseLoginUrl :string = AppConfig.baseUrl+'/projecthub/signIn';
+  baseLoginUrl :string = AppConfig.baseUrl+'/projecthub/profileSignIn';
+
+  baseUsersUrl = AppConfig.baseUrl+'/projecthub/usersByRoleUser';
+  baseProfilesUrl = AppConfig.baseUrl+'/projecthub/usersByRoleManager';
 
 
   userDetails!: ResponseUsers;
@@ -48,7 +51,18 @@ export class UserDetailsService {
     getAllUsers(jwtToken: string):Observable<Users[]>{
       // console.log(jwtToken);
        return this.http.get<Users[]>( 
-        this.baseUserUrl,
+        this.baseUsersUrl,
+        {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${jwtToken}` // Pass the token here
+        })
+      });
+    }
+    getAllProfiiles(jwtToken: string):Observable<Users[]>{
+      // console.log(jwtToken);
+       return this.http.get<Users[]>( 
+        this.baseProfilesUrl,
         {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',

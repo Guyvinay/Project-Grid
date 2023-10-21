@@ -402,10 +402,10 @@
                                     
                                       <div class="mb-4">
                                         <label for="selectedUser" class="block text-gray-600 text-sm font-medium">Select Manager</label>
-                                        <select name="selectedUser" (change)="addManagerToProject(availableUsers[userDropdown.selectedIndex-1])" #userDropdown
+                                        <select name="selectedUser" (change)="addManagerToProject(availableProfiles[userDropdown.selectedIndex-1])" #userDropdown
                                                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300">
                                            <option  >Choose Available Users </option>
-                                          <option *ngFor="let user of availableUsers" [value]="user">{{ user.name }}</option>
+                                          <option *ngFor="let user of availableProfiles" [value]="user">{{ user.name }}</option>
                                         </select>
                                       </div>
 

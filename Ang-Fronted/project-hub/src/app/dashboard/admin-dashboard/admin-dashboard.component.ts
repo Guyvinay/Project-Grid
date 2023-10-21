@@ -45,6 +45,7 @@ export class AdminDashboardComponent implements OnInit {
 
   loggedInUser !: ResponseUsers;
   availableUsers : Users[] = [];
+  availableProfiles : Users[] = [];
   availableTeams : Team[] = [];
   availableProjects !: Project[];
 
@@ -73,6 +74,17 @@ export class AdminDashboardComponent implements OnInit {
         this.availableUsers = resp;
         console.log("Available Users");
         console.log(this.availableUsers);
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
+// getting all Profiles
+    this.userDetailsService.getAllProfiiles(this.loggedInUser.jwt_token).subscribe(
+      (resp)=>{
+        this.availableProfiles = resp;
+        console.log("Available Managers");
+        console.log(this.availableProfiles);
       },
       (error)=>{
         console.log(error);
@@ -194,7 +206,7 @@ export class AdminDashboardComponent implements OnInit {
     'Authorization': `Bearer ${token}` 
   });
 
-  console.log(token);
+  console.log(this.projectToBeCreated);
 
   this.http.post(
     AppConfig.baseUrl+"/projecthub/projects/register",
