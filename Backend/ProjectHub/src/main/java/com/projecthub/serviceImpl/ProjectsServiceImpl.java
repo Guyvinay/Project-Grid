@@ -30,16 +30,16 @@ public class ProjectsServiceImpl implements ProjectsService {
 	@Override
 	public Projects saveProjects(Projects project) {
 		
-		Users manager = usersRepository.findByEmail(project.getManagerEmail()).get();
+//		Users manager = usersRepository.findByEmail(project.getManagerEmail()).get();
 		
 		List<String> teamsId = project.getTeamsId();
-		
+		System.out.println(teamsId);
 		for(String teamId : teamsId) {
 			Teams team = teamsRepository.findById(Long.parseLong(teamId)).get();
 			project.getTeams().add(team);
-			team.setProject(project);
+			team.getProject().add(project);
 		}
-		project.setProject_manager(manager);
+//		project.setProject_manager(manager);
 //		manager.setProject(project);
 		return projectsRepository.save(project);
 		

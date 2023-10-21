@@ -31,7 +31,7 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public Profile saveProfile(Profile profile) {
-		profile.setRole("ROLE_MANAGER");
+		profile.setRole("ROLE_"+profile.getRole().toUpperCase());
 		profile.setPassword(passwordEncoder.encode(profile.getPassword()));
 		return profileRepository.save(profile);
 	}

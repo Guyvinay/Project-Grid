@@ -10,6 +10,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Transient;
@@ -33,19 +36,24 @@ public class Projects {
 	private LocalDate end_date;
 	
 
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToOne(mappedBy = "project")
 	private Users project_manager;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@Transient
 	private String managerEmail;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@Transient
 	private List<String> teamsId = new ArrayList<>();
 
 //	@JsonIgnore
-	@OneToMany(mappedBy = "project")
+	@ManyToMany
+	@JoinTable(
+			name = "project_team",
+			joinColumns = { @JoinColumn(name = "project_id") }, 
+			inverseJoinColumns = { @JoinColumn(name = "team_id") }
+			)
 	private List<Teams> teams=new ArrayList<>();
 }

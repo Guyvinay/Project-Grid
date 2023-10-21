@@ -29,9 +29,8 @@ public class Teams {
 	private String name;
 	
 	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "project_id")
-	private Projects project;
+	@ManyToMany(mappedBy = "teams")
+	private List<Projects> project;
 	
 	
 	@Transient
