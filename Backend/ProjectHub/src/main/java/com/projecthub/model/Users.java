@@ -61,7 +61,7 @@ public class Users extends Profile {
 			)
 	private List<Teams> teams=new ArrayList<>();
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Tasks> task=new ArrayList<>();
 	
