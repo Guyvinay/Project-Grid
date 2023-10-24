@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AppConfig } from 'src/app/services/config.service';
 
 @Component({
   selector: 'app-registration',
@@ -12,6 +13,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
+
+  baseRegistrationUrl = AppConfig.baseUrl+'/projecthub/register'; 
+
+
   user = {
     firstName: '',
     lastName: '',
@@ -37,7 +42,7 @@ export class RegistrationComponent {
    }
 
    this.http.post(
-    'http://localhost:8888/projecthub/register' , 
+    this.baseRegistrationUrl ,
     registrationData
    )
    .subscribe(

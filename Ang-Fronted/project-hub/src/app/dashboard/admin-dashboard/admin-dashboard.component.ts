@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Project, ProjectModel, Projects } from 'src/app/interfaces/projects';
 import { ResponseUsers } from 'src/app/interfaces/responseUser';
 import { Team, Teams } from 'src/app/interfaces/teams';
@@ -16,6 +17,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
+
+
+  isProjectSectionShown = false;
+
+  isProjectSectionShow(){
+    this.isProjectSectionShown = !this.isProjectSectionShown;
+  }
 
   taskToBeCreated = {
     title:'',
@@ -54,7 +62,8 @@ export class AdminDashboardComponent implements OnInit {
     private userDetailsService : UserDetailsService,
     private http : HttpClient,
     private teamsService : TeamService,
-    private projectService : ProjectService
+    private projectService : ProjectService,    // private toastr : ToastrService,
+    private router : Router,
   ){}
 
 
@@ -229,8 +238,6 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
-
-
   addManagerToProject(manager: Users){
     this.projectToBeCreated.managerEmail = manager.email;
   }
@@ -245,7 +252,46 @@ export class AdminDashboardComponent implements OnInit {
 
 
 
+  baseManagerRegistrationUrl = AppConfig.baseUrl+'/projecthub/registerManager'; 
+
+  manager = {
+    name: '',
+    email: '',
+    password: '',
+    profile_picture:''
+  };
 
 
+  onSubmitRegisterManager(){
+    // console.log(this.manager);
+    const registerManager = {
+      name : this.manager.name,
+      email:this.manager.email,
+      password:this.manager.password,
+      profile_picture:this.manager.profile_picture
+    }
+
+    const  token  =  this.loggedInUser.jwt_token;
+    const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}` 
+  });
+
+    this.http.post(
+      this.baseManagerRegistrationUrl,
+      registerManager,
+      {headers}
+     )
+     .subscribe(
+      (response) => {
+        Swal.fire('Congratulations', 'Manager Has Been Registered. Now Refresh Page to select... ', 'success');
+        console.log('Registration Successfull',response);
+      },
+      (error)=>{
+        Swal.fire('Oops...', ' Manager Registration Failed. PLease Submit the Details Again to Register... ', 'error');
+        console.log('Registration Failed: ', error)
+      }
+     )
+
+  }
 
 }

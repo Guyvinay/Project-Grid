@@ -7,6 +7,7 @@ import { Project } from '../interfaces/projects';
 import { ProductService } from '../services/product.service';
 import { Users } from '../interfaces/users';
 import { Router } from '@angular/router';
+import { AppConfig } from '../services/config.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  baseProjectUrl = AppConfig.baseUrl+'/projecthub/projects/register';
 
   responseUsers !: ResponseUsers;
   respProjects !: Project[] ;
@@ -110,7 +113,7 @@ export class DashboardComponent implements OnInit {
     console.log(projectData)
 
     this.http.post(
-      'http://localhost:8888/projecthub/projects/register',
+      this.baseProjectUrl,
       projectData
     )
     .subscribe(

@@ -15,6 +15,7 @@ export class UserDetailsService {
 
   baseUsersUrl = AppConfig.baseUrl+'/projecthub/usersByRoleUser';
   baseProfilesUrl = AppConfig.baseUrl+'/projecthub/usersByRoleManager';
+  // http://localhost:8888/projecthub/usersByRoleManager
 
 
   userDetails!: ResponseUsers;

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Project } from '../interfaces/projects';
 import { ResponseUsers } from '../interfaces/responseUser';
@@ -33,6 +33,8 @@ export class ProjectManagementComponent implements OnInit {
 
 
   
+
+  
   constructor(
     private userDetailsService : UserDetailsService,
     private http : HttpClient,
@@ -51,7 +53,17 @@ export class ProjectManagementComponent implements OnInit {
       this.responseUsers=this.userDetailsService.getUserDetails();
       // console.log(this.userData)
     }
-      
+    this.productsService.getAllProducts(this.responseUsers.jwt_token)
+    .subscribe(
+      (res)=>{
+        this.respProjects=res;
+        console.log(this.respProjects)
+      },
+    (err)=>{
+      console.log(err);
+    }
+    )
+
   }
 
   logOutUser(){

@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Project } from '../interfaces/projects';
 import { Observable } from 'rxjs';
-import { ProjectManagementComponent } from '../project-management/project-management.component';
 import { AppConfig } from './config.service';
 
 @Injectable({
