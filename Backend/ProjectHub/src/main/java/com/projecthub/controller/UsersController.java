@@ -48,6 +48,12 @@ public class UsersController {
 			throw new EntryNotFoundException("User cannot be null, Value must be passed! ");
 		return new ResponseEntity<Users>(userService.saveUsers(user),HttpStatus.ACCEPTED);
 	}
+	@PostMapping(value = "/registerManager")
+	public ResponseEntity<Users> saveManager( @Valid @RequestBody Users user){
+		if(user==null)
+			throw new EntryNotFoundException("User cannot be null, Value must be passed! ");
+		return new ResponseEntity<Users>(userService.saveManagers(user),HttpStatus.ACCEPTED);
+	}
 
 	@GetMapping(value = "/users/{id}")
 	public ResponseEntity<Users> getUserById( @PathVariable("id") Long id) {

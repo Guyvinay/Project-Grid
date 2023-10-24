@@ -34,7 +34,12 @@ public class UserServiceImpl implements UsersService {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return usersRepository.save(user);
 	}
-
+	@Override
+	public Users saveManagers(Users user) {
+		user.setRole("ROLE_MANAGER");
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		return usersRepository.save(user);
+	}
 	@Override
 	public Users getUserById(Long id) {
 		Users user = usersRepository.findById(id).orElseThrow(

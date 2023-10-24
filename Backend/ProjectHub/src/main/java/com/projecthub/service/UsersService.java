@@ -11,6 +11,7 @@ import com.projecthub.model.Users;
 public interface UsersService {
 
 	public Users saveUsers(Users user);
+	public Users saveManagers(Users user);
 	public Users getUserById(Long id);
 	public Users getUserByEmail(String email);
 	public List<Users> getAllUsers();
