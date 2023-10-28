@@ -1,6 +1,5 @@
 package com.projecthub.controller;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +26,12 @@ import com.projecthub.model.Users;
 import com.projecthub.service.UsersService;
 
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
+// import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping(value = "/projecthub")
 @CrossOrigin(value = "*")
-@Slf4j
+// @Slf4j
 public class UsersController {
 
 	@Autowired

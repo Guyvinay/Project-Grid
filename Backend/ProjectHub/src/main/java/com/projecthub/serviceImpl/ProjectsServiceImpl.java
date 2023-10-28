@@ -1,7 +1,7 @@
 package com.projecthub.serviceImpl;
 
 import java.util.List;
-import java.util.Optional;
+// import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,7 +68,7 @@ public class ProjectsServiceImpl implements ProjectsService {
 
 	@Override
 	public String deleteProjectById(Long id) {
-		Projects users = projectsRepository.findById(id).orElseThrow(
+		projectsRepository.findById(id).orElseThrow(
 				()->new EntryNotFoundException("Project with Id: "+id+" not Found"));
 		projectsRepository.deleteById(id);
 		return "User With ID:"+id+" Successfully Deleted";

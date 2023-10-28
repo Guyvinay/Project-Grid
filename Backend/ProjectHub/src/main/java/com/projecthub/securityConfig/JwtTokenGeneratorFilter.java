@@ -1,11 +1,11 @@
 package com.projecthub.securityConfig;
 
 import java.io.IOException;
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
+// import java.util.List;
 import java.util.Set;
 
 import javax.crypto.SecretKey;
@@ -24,8 +24,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
-@Slf4j
+// import lombok.extern.slf4j.Slf4j;
+// @Slf4j
 public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 	
 	Logger log = LoggerFactory.getLogger(JwtTokenGeneratorFilter.class);

@@ -14,7 +14,7 @@ import com.projecthub.exception.EntryNotFoundException;
 import com.projecthub.exception.UnauthorizedAccessException;
 import com.projecthub.model.AuthenticatedResponse;
 import com.projecthub.model.Profile;
-import com.projecthub.model.Users;
+// import com.projecthub.model.Users;
 import com.projecthub.repository.ProfileRepository;
 import com.projecthub.securityConfig.TokenHandling;
 import com.projecthub.service.ProfileService;
@@ -59,7 +59,7 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public String deleteProfileById(Long id) {
-		Profile profiles = profileRepository.findById(id).orElseThrow(
+		profileRepository.findById(id).orElseThrow(
 				()->new EntryNotFoundException("Profile with Id: "+id+" not Found"));
 		profileRepository.deleteById(id);
 		return "Profile With ID:"+id+" Successfully Deleted";
