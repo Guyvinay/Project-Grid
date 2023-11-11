@@ -1,0 +1,14 @@
+/* 
+ng g c dashboard/admin-dashboard
+ng g c dashboard/user-dashboard
+ng g c dashboard/manager-dashboard
+
+ng g c initials/login
+ng g c initials/register
+
+ng g s services/configuration
+
+ng g i modals/User
+
+
+*/
