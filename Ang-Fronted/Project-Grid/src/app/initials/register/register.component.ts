@@ -17,7 +17,7 @@ export class RegisterComponent {
     email: '',
     password: '',
     profile_picture: ''
-  }
+  };
 
   constructor(
     private configuration : ConfigurationService,

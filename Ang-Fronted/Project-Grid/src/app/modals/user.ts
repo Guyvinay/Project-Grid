@@ -8,7 +8,14 @@ export  interface LoginCreds {
 
 }
 
-export interface ResponseUsers {
+export interface ResponseUser {
+ 
+    name:string;
+    jwt_token:string;
+    email:string;
+    profile_picture:string;
+    profile_id:string;
+    role:string;
     
 }
 export interface RegisterUser {

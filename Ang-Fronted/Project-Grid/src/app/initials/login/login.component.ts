@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { LoginCreds } from 'src/app/modals/user';
+import { LoginCreds, ResponseUser } from 'src/app/modals/user';
 import { ConfigurationService } from 'src/app/services/configuration.service';
+import { UserDetailsService } from 'src/app/services/user-details.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,10 +19,21 @@ export class LoginComponent {
     password: ''
   }
 
+  currentLoggedInUser : ResponseUser = {
+    name: '',
+    jwt_token: '',
+    email: '',
+    profile_picture: '',
+    profile_id: '',
+    role: ''
+  }
+  loggedInUser!:ResponseUser;
+
   constructor(
     private router : Router,
     private configuration : ConfigurationService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private userDetailsService : UserDetailsService
   ){}
 
   loginUser(){
@@ -30,15 +42,19 @@ export class LoginComponent {
               .subscribe(
                 (response)=>{
                   this.spinner.hide();
-                  console.log(response);
-
+                  this.currentLoggedInUser = response.data;
+                  this.userDetailsService.setCurrentLoggedInUser(this.currentLoggedInUser);
+                  localStorage.setItem('loggedInUserData',JSON.stringify(this.currentLoggedInUser));
                   Swal.fire({
                     icon: 'success', 
                     title: 'Login Success!',
                     text: 'Successfully Logged-in',
                     showConfirmButton: false, 
-                    timer: 1500,
-                  });
+                    timer: 1800,
+                  }); 
+                  setTimeout(() => {
+                    this.router.navigate(['admin-dashboard']);
+                  }, 2000);
                 },
                 (error)=>{
                   this.spinner.hide();

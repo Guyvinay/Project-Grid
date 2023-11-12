@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminDashboardComponent } from './dashboard/admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
+import { ManagerDashboardComponent } from './dashboard/manager-dashboard/manager-dashboard.component';
 
 
 @NgModule({
@@ -16,6 +19,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    AdminDashboardComponent,
+    UserDashboardComponent,
+    ManagerDashboardComponent,
 
   ],
   imports: [
