@@ -15,6 +15,7 @@ import { ManagerDashboardComponent } from './dashboard/manager-dashboard/manager
 import { TeamComponent } from './team/team.component';
 import { TaskComponent } from './task/task.component';
 import { UserComponent } from './user/user.component';
+import { ProjectComponent } from './project/project.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { UserComponent } from './user/user.component';
     TeamComponent,
     TaskComponent,
     UserComponent,
+    ProjectComponent,
 
   ],
   imports: [
