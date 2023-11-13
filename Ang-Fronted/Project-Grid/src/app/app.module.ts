@@ -12,6 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminDashboardComponent } from './dashboard/admin-dashboard/admin-dashboard.component';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import { ManagerDashboardComponent } from './dashboard/manager-dashboard/manager-dashboard.component';
+import { TeamComponent } from './team/team.component';
+import { TaskComponent } from './task/task.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -22,6 +25,9 @@ import { ManagerDashboardComponent } from './dashboard/manager-dashboard/manager
     AdminDashboardComponent,
     UserDashboardComponent,
     ManagerDashboardComponent,
+    TeamComponent,
+    TaskComponent,
+    UserComponent,
 
   ],
   imports: [
