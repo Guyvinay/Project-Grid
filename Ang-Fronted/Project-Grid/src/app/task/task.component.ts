@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserDetailsService } from '../services/user-details.service';
 import { TasksService } from '../services/tasks.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-task',
@@ -67,10 +68,24 @@ export class TaskComponent implements OnInit {
         (response) => {
           console.log(response);
           this.spinner.hide();
+          Swal.fire({
+            icon: 'success', // Set the alert icon (success, error, warning, info, etc.)
+            title: 'Task Created',
+            text: "You Have Successfully Created Task",
+            showConfirmButton: false, // Automatically close the alert after a short delay
+            timer: 2000, // Adjust the duration (in milliseconds) for the alert to disappear
+          });
         },
         (error) => {
           console.log(error);
           this.spinner.hide();
+          Swal.fire({
+            icon: 'error', // Set the alert icon (success, error, warning, info, etc.)
+            title: 'Task Creation Failed',
+            text: "Task Creation Failed! Try Again",
+            showConfirmButton: false, // Automatically close the alert after a short delay
+            timer: 2000, // Adjust the duration (in milliseconds) for the alert to disappear
+          });
         }
       );
   }

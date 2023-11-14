@@ -6,6 +6,7 @@ import { Team } from '../modals/team';
 import { TeamsService } from '../services/teams.service';
 import { ProjectsService } from '../services/projects.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-project',
@@ -57,6 +58,7 @@ export class ProjectComponent implements OnInit {
         (response) => {
           this.availableUsers = response;
           console.log(this.availableUsers);
+          
         },
         (error) => {
           console.log(error);
@@ -93,9 +95,24 @@ export class ProjectComponent implements OnInit {
                        .subscribe((response)=>{
                         console.log(response);
                         this.spinner.hide();
+                        Swal.fire({
+                          icon: 'success', // Set the alert icon (success, error, warning, info, etc.)
+                          title: 'Project Created',
+                          text: "You Have Successfully Created Project",
+                          showConfirmButton: false, // Automatically close the alert after a short delay
+                          timer: 2000, // Adjust the duration (in milliseconds) for the alert to disappear
+                        });
                        },
-                       (error)=>{console.log(error);
+                       (error)=>{
+                        console.log(error);
                         this.spinner.show();
+                        Swal.fire({
+                          icon: 'error', // Set the alert icon (success, error, warning, info, etc.)
+                          title: 'Project Creation Failed',
+                          text: "Project Creation Failed! Try again...",
+                          showConfirmButton: false, // Automatically close the alert after a short delay
+                          timer: 2000, // Adjust the duration (in milliseconds) for the alert to disappear
+                        });
                        });
   }
 
