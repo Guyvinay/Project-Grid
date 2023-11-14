@@ -1,7 +1,9 @@
 package com.projecthub.serviceImpl;
 
+import java.util.HashMap;
 import java.util.List;
 // import java.util.Optional;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,10 +56,16 @@ public class ProjectsServiceImpl implements ProjectsService {
 	}
 
 	@Override
-	public List<Projects> getAllProjects() {
-		
+	public Map<String, Object> getAllProjects() {
+		Map<String, Object> map = new HashMap<>();
 		List<Projects> list = projectsRepository.findAll();
-		return list;
+		if(list.size()>0) {
+			map.put("total", list.size());
+			map.put("data", list);
+		} else {
+			map.put("total", "No Project Available to Show");
+		}
+		return map;
 	}
 
 	@Override

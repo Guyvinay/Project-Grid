@@ -1,7 +1,9 @@
 package com.projecthub.serviceImpl;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,15 +68,10 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 	
 	@Override
-	public AuthenticatedResponse generateJwtToken(String username, String password,
+	public Map<String, Object> generateJwtToken(String username, String password,
 			Collection<? extends GrantedAuthority> authorities) {
-		
+		Map<String, Object> map = new HashMap<>();
 		Optional<Profile> optional = profileRepository.findByEmail(username);
-		
-		if(optional.isEmpty()) {
-			throw new UnauthorizedAccessException("User not registered! ");
-		}
-		else {
 			Profile user = optional.get();
 			String userEmail = user.getEmail();
              TokenHandling tokenHandling = new TokenHandling();
@@ -85,9 +82,12 @@ public class ProfileServiceImpl implements ProfileService {
 		     Long profile_id = user.getProfile_id();
 		     String profile_picture = user.getProfile_picture();
 		     String role = user.getRole();
-		     
-		     return new AuthenticatedResponse(profile_id, userEmail, name,profile_picture,token,role);
-		}
+		     AuthenticatedResponse response =  new AuthenticatedResponse(profile_id, userEmail, name,profile_picture,token,role);
+		     map.put("message", "User Successfully Logged-in");
+		     map.put("status", "OK");
+		     map.put("data", response);
+		      return map;
+		
 	}
 	
 

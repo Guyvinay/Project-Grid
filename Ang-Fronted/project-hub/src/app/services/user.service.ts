@@ -14,6 +14,9 @@ export class UserService {
     private http : HttpClient,
   ) { }
 
+  
+
+
 
   setUserDetails(userData:ResponseUsers){
     this.userDetails=userData;

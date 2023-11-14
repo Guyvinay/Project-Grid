@@ -1,6 +1,7 @@
 package com.projecthub.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projecthub.exception.EntryNotFoundException;
-import com.projecthub.model.AuthenticatedResponse;
 import com.projecthub.model.LoginCreds;
 import com.projecthub.model.Users;
 import com.projecthub.service.UsersService;
@@ -29,7 +29,7 @@ import jakarta.validation.Valid;
 // import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping(value = "/projecthub")
+@RequestMapping(value = "/api/users")
 @CrossOrigin(value = "*")
 // @Slf4j
 public class UsersController {
@@ -41,7 +41,7 @@ public class UsersController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
-	@PostMapping(value = "/register")
+	@PostMapping(value = "/userRegister")
 	public ResponseEntity<Users> saveUsers( @Valid @RequestBody Users user){
 		if(user==null)
 			throw new EntryNotFoundException("User cannot be null, Value must be passed! ");
@@ -64,7 +64,7 @@ public class UsersController {
 				userService.getUserById(id),HttpStatus.ACCEPTED);
 	}
 
-	@GetMapping(value = "/users")
+	@GetMapping(value = "/getAllUsers")
 	public ResponseEntity<List<Users>> getAllUsers(){
 		
 		return  new ResponseEntity<List<Users>>(
@@ -115,8 +115,8 @@ public class UsersController {
 		return " Login Failed ...";
 		
 	}
-	@PostMapping(value = "/signIn")
-	public ResponseEntity<AuthenticatedResponse> signInUsingUsernamePass(@RequestBody LoginCreds loginCreds) {
+	@PostMapping(value = "/userLogin")
+	public ResponseEntity<Map<String, Object>> signInUsingUsernamePass(@RequestBody LoginCreds loginCreds) {
 		System.out.println();
 		Authentication authenticate = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginCreds.getUsername(), loginCreds.getPassword())
@@ -124,13 +124,13 @@ public class UsersController {
 //		System.out.println(authenticate);
 		String username = authenticate.getName();
 		String password = loginCreds.getPassword();		
-		AuthenticatedResponse authenticatedResponse = userService
+		Map<String, Object> authenticatedResponse = userService
 				                 .generateJwtToken(
 				                      username,
 				                      password,
 				                      authenticate.getAuthorities());
 				
-		return new ResponseEntity<AuthenticatedResponse>(authenticatedResponse,HttpStatus.ACCEPTED);
+		return new ResponseEntity<Map<String, Object>>(authenticatedResponse,HttpStatus.ACCEPTED);
 		
 	}
 }

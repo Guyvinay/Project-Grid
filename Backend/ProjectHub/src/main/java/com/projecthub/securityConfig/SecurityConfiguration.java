@@ -26,7 +26,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class SecurityConfiguration {
 
 	@Bean
-	public SecurityFilterChain securityFilterChain(
+	SecurityFilterChain securityFilterChain(
 			HttpSecurity httpSecurity) throws Exception {
 		
 		httpSecurity
@@ -50,10 +50,9 @@ public class SecurityConfiguration {
 			})
 		   .authorizeHttpRequests(auth->{
 			   auth
-			   .requestMatchers(HttpMethod.POST,"/projecthub/register" , "/projecthub/registerProfile").permitAll()
-			   .requestMatchers(HttpMethod.POST,"/projecthub/signIn","/projecthub/profileSignIn").permitAll()
+			   .requestMatchers(HttpMethod.POST,"/projecthub/register" , "/api/users/userRegister").permitAll()
+			   .requestMatchers(HttpMethod.POST,"/api/users/userLogin","/api/profiles/profileLogin").permitAll()
 			   .requestMatchers(HttpMethod.POST,"/projecthub/registerProfile").permitAll()
-			   .requestMatchers("/projecthub/projects/allProjects").hasRole("ADMIN")
 			   .requestMatchers("/projecthub/users").hasRole("ADMIN")
 			   .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
 			       .anyRequest()
@@ -69,12 +68,12 @@ public class SecurityConfiguration {
 	}
 	
 	@Bean
-    public PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
 	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
 		return authenticationConfiguration
 				.getAuthenticationManager();
 	}

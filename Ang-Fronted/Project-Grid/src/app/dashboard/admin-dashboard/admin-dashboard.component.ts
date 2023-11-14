@@ -31,16 +31,12 @@ export class AdminDashboardComponent implements OnInit {
     const currentStoredUserdata = localStorage.getItem("loggedInUserData");
 
     if(currentStoredUserdata){
-      console.log("from admin-dashboard local storage");
       this.currentLoggedInUser = JSON.parse(currentStoredUserdata);
+      this.userDetailsService.setCurrentLoggedInUser(this.currentLoggedInUser);
     }else{
-      console.log("from admin-dashboard service");
       this.currentLoggedInUser = this.userDetailsService.getCurrentLoggedInUser();
-    }
-
-    console.log(this.currentLoggedInUser);
-
-
+    };
+    // console.log(this.currentLoggedInUser);
     this.projectService.getAllProjects(this.currentLoggedInUser.jwt_token)
                        .subscribe(
                         (response)=>{
@@ -48,13 +44,6 @@ export class AdminDashboardComponent implements OnInit {
                         },
                         (error)=>{
                           console.log(error); 
-                        }
-                       );
-
-
+                        });
   }
-
-
-  
-
 }

@@ -22,6 +22,7 @@
     "@angular/router": "^16.2.0",
     "@ng-bootstrap/ng-bootstrap": "^15.1.1",
     "flowbite": "^1.8.1",
+    "ngx-spinner": "^16.0.2",
     "ngx-toastr": "^17.0.2",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.7.32",

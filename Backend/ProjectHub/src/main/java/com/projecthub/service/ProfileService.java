@@ -2,10 +2,10 @@ package com.projecthub.service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import com.projecthub.model.AuthenticatedResponse;
 import com.projecthub.model.Profile;
 
 public interface ProfileService {
@@ -15,6 +15,6 @@ public interface ProfileService {
 	public List<Profile> getAllProfile();
 	public Profile updateProfile(Long id , Profile profile);
 	public String deleteProfileById(Long id);
-	public AuthenticatedResponse generateJwtToken(String username, String password,
+	public Map<String, Object> generateJwtToken(String username, String password,
 			Collection<? extends GrantedAuthority> authorities);
 }

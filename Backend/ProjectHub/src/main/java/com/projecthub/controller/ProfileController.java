@@ -1,6 +1,7 @@
 package com.projecthub.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projecthub.exception.EntryNotFoundException;
-import com.projecthub.model.AuthenticatedResponse;
 import com.projecthub.model.LoginCreds;
 import com.projecthub.model.Profile;
 import com.projecthub.service.ProfileService;
@@ -27,7 +27,7 @@ import com.projecthub.service.ProfileService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/projecthub")
+@RequestMapping(value = "/api/profiles")
 @CrossOrigin(value = "*")
 public class ProfileController {
 
@@ -85,8 +85,8 @@ public class ProfileController {
 				profileService.deleteProfileById(id),HttpStatus.ACCEPTED);
 	}
 
-	@PostMapping(value = "/profileSignIn")
-	public ResponseEntity<AuthenticatedResponse> signInUsingUsernamePass(@RequestBody LoginCreds loginCreds) {
+	@PostMapping(value = "/profileLogin")
+	public ResponseEntity<Map<String, Object>> signInUsingUsernamePass(@RequestBody LoginCreds loginCreds) {
 		
 		Authentication authenticate = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginCreds.getUsername(), loginCreds.getPassword())
@@ -94,13 +94,13 @@ public class ProfileController {
 		System.out.println(authenticate);
 		String username = authenticate.getName();
 		String password = loginCreds.getPassword();		
-		AuthenticatedResponse authenticatedResponse = profileService
+		Map<String, Object> authenticatedResponse = profileService
 				                 .generateJwtToken(
 				                      username,
 				                      password,
 				                      authenticate.getAuthorities());
 				
-		return new ResponseEntity<AuthenticatedResponse>(authenticatedResponse,HttpStatus.ACCEPTED);
+		return new ResponseEntity<Map<String, Object>>(authenticatedResponse,HttpStatus.ACCEPTED);
 		
 	}
 	

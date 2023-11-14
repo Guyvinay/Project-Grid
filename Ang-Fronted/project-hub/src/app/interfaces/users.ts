@@ -8,3 +8,13 @@ export interface Users {
 
 
 }
+
+export interface RegisterUser {
+
+    email:string;
+    profile_picture:string;
+    name:string;
+    password:string;
+
+}
+

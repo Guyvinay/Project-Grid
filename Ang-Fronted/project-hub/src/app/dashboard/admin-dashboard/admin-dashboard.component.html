@@ -76,7 +76,7 @@
         <ul class="space-y-2 font-medium">
 
             <li>
-                <a href="/adminDashboard"
+                <a [routerLink]="'/adminDashboard'"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
@@ -90,7 +90,30 @@
             </li>
 
             <li>
-                <a href="/adminDashboard"
+                <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                      <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
+                         <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z"/>
+                      </svg>
+                      <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Users</span>
+                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                      </svg>
+                </button>
+                <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                      <li>
+                         <a [routerLink]="'/users'" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"> Register User </a>
+                      </li>
+                      <li>
+                         <a [routerLink]="'/users'" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">User Details</a>
+                      </li>
+                      <li>
+                         <a [routerLink]="'/users'" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">View All Users</a>
+                      </li>
+                </ul>
+             </li>
+
+            <li>
+                <a [routerLink]="'/adminDashboard'"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -104,7 +127,7 @@
             </li>
 
             <li>
-                <a href="#"
+                <a [routerLink]="'/users'"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
@@ -116,7 +139,8 @@
             </li>
 
             <li>
-                <a class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                <a [routerLink]="'/projects'"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                     (click)="isProjectSectionShow()">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -152,15 +176,72 @@
                     <span class="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
                 </a>
             </li>
+            <li>
+                <a href="#"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
+                        <path
+                            d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z" />
+                        <path
+                            d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Sign Out</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="'/teams'"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                        <path
+                            d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Teams</span>
+                </a>
+            </li>
+
+            <li>
+                <a [routerLink]="'/tasks'"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                        <path
+                            d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Tasks</span>
+                </a>
+            </li>
+
+            <li>
+                <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example-2" data-collapse-toggle="dropdown-example-2">
+                      
+                      <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">E-commerce</span>
+                      
+                </button>
+                <ul id="dropdown-example-2" class="hidden py-2 space-y-2">
+                      <li>
+                         <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Products</a>
+                      </li>
+                      <li>
+                         <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</a>
+                      </li>
+                      <li>
+                         <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</a>
+                      </li>
+                </ul>
+             </li>
+            
         </ul>
     </div>
 </aside>
 
-<div class="p-4 sm:ml-64">
+<!-- <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
 
-        <div id="accordion-collapse" data-accordion="collapse">
-            <!-- Create project -->
+         <div id="accordion-collapse" data-accordion="collapse">
+            
             <h2 id="accordion-collapse-heading-1">
                 <button type="button"
                     class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -177,7 +258,7 @@
             <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
 
-                    <!-- Nested accordion -->
+                    
                     <div id="accordion-nested-collapse" data-accordion="collapse">
                         <h2 id="accordion-nested-collapse-heading-1">
                             <button type="button"
@@ -192,7 +273,7 @@
                                 </svg>
                             </button>
                         </h2>
-                        <!-- Assign Task to Users -->
+                        
                         <div id="accordion-nested-collapse-body-1" class="hidden"
                             aria-labelledby="accordion-nested-collapse-heading-1">
                             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
@@ -253,7 +334,7 @@
                                                 <option *ngFor="let user of availableUsers" [value]="user">{{ user.name
                                                     }}</option>
                                             </select>
-                                            
+
                                         </div>
 
 
@@ -263,21 +344,14 @@
                                             Save Project
                                         </button>
 
-                                        <!-- <ul class="mb-4">
-                                       <li *ngFor="let user of projectToBeCreated.toAddUsers; let i = index"
-                                           class="flex items-center justify-between px-3 py-2 bg-blue-100 text-blue-700 border border-blue-300 rounded-lg mb-2">
-                                         {{ user }}
-                                         <button type="button" (click)="removeUser(i)"
-                                                 class="text-sm font-medium text-red-600 focus:ring focus:ring-red-300">Remove</button>
-                                       </li>
-                                     </ul> -->
+                                        
                                     </form>
                                 </div>
 
                             </div>
-                        </div>
+                        </div> 
 
-                        <h2 id="accordion-nested-collapse-heading-2">
+                         <h2 id="accordion-nested-collapse-heading-2">
                             <button type="button"
                                 class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
                                 data-accordion-target="#accordion-nested-collapse-body-2" aria-expanded="false"
@@ -290,12 +364,12 @@
                                 </svg>
                             </button>
                         </h2>
-                        <!-- Creating Teams for the Project -->
+                       
                         <div id="accordion-nested-collapse-body-2" class="hidden"
                             aria-labelledby="accordion-nested-collapse-heading-2">
                             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
 
-                                <!-- Creating Teams for the Project -->
+                               
                                 <div class="p-4">
                                     <p class="text-2xl font-bold text-center mt-14 mb-2">Create Teams For The Project
                                     </p>
@@ -344,7 +418,7 @@
 
 
                             </div>
-                        </div>
+                        </div> 
 
                         <h2 id="accordion-nested-collapse-heading-3">
                             <button type="button"
@@ -359,7 +433,7 @@
                                 </svg>
                             </button>
                         </h2>
-                        <!-- Create Project   -->
+                        
                         <div id="accordion-nested-collapse-body-3" class="hidden"
                             aria-labelledby="accordion-nested-collapse-heading-3">
                             <div class="p-5 border border-gray-200 dark:border-gray-700">
@@ -423,7 +497,6 @@
                                             </select>
 
 
-                                            <!-- Modal toggle -->
                                             <button data-modal-target="authentication-modal"
                                                 data-modal-toggle="authentication-modal"
                                                 class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -431,11 +504,11 @@
                                                 Register Manager
                                             </button>
 
-                                            <!-- Main modal -->
+                                           
                                             <div id="authentication-modal" tabindex="-1" aria-hidden="true"
                                                 class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                                 <div class="relative w-full max-w-md max-h-full">
-                                                    <!-- Modal content -->
+                                                    
                                                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                                         <button type="button"
                                                             class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -450,30 +523,58 @@
                                                             <span class="sr-only">Close modal</span>
                                                         </button>
                                                         <div class="px-6 py-6 lg:px-8">
-                                                                <form class="space-y-6" (ngSubmit)="onSubmitRegisterManager()">
-                                                                    <h5 class="text-xl font-medium text-gray-900 dark:text-white">Register Manager</h5>
-                                                                    <div>
-                                                                        <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Manager Name </label>
-                                                                        <input type="text"  id="managerName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Manager Name" name="name" [(ngModel)]="manager.name" required>
-                                                                    </div>
-                                                                   
-                                                                    <div>
-                                                                        <label for="profile_picture" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Profile Picture URL</label>
-                                                                        <input type="text" id="profile_picture" placeholder="Profile Picture Url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" name="profile_picture" [(ngModel)]="manager.profile_picture"  required>
-                                                                    </div>
-                                                                    <div>
-                                                                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manager Email </label>
-                                                                        <input type="email" id="email" placeholder="Manager Email " class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" name="email" [(ngModel)]="manager.email"  required>
-                                                                    </div>
-                                                                    <div>
-                                                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manager password</label>
-                                                                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" name="password" [(ngModel)]="manager.password"  required>
-                                                                    </div>
-                                                                   
-                                                                    
-                                                                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register Manager</button>
-                                                                    
-                                                                </form>
+                                                            <form class="space-y-6"
+                                                                (ngSubmit)="onSubmitRegisterManager()">
+                                                                <h5
+                                                                    class="text-xl font-medium text-gray-900 dark:text-white">
+                                                                    Register Manager</h5>
+                                                                <div>
+                                                                    <label for="firstName"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter
+                                                                        Manager Name </label>
+                                                                    <input type="text" id="managerName"
+                                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                                        placeholder="Manager Name" name="name"
+                                                                        [(ngModel)]="manager.name" required>
+                                                                </div>
+
+                                                                <div>
+                                                                    <label for="profile_picture"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                                                        Profile Picture URL</label>
+                                                                    <input type="text" id="profile_picture"
+                                                                        placeholder="Profile Picture Url"
+                                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                                        name="profile_picture"
+                                                                        [(ngModel)]="manager.profile_picture" required>
+                                                                </div>
+                                                                <div>
+                                                                    <label for="email"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manager
+                                                                        Email </label>
+                                                                    <input type="email" id="email"
+                                                                        placeholder="Manager Email "
+                                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                                        name="email" [(ngModel)]="manager.email"
+                                                                        required>
+                                                                </div>
+                                                                <div>
+                                                                    <label for="password"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manager
+                                                                        password</label>
+                                                                    <input type="password" name="password" id="password"
+                                                                        placeholder="••••••••"
+                                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                                        name="password" [(ngModel)]="manager.password"
+                                                                        required>
+                                                                </div>
+
+
+                                                                <button type="submit"
+                                                                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register
+                                                                    Manager</button>
+
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -516,12 +617,11 @@
 
 
                             </div>
-                        </div>
+                        </div> 
                     </div>
-                    <!-- End: Nested accordion -->
                 </div>
             </div>
-            <!-- Show All Projects  -->
+          
             <h2 id="accordion-collapse-heading-2">
                 <button type="button"
                     class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -542,7 +642,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> 
 
     </div>
-</div>
+</div> -->

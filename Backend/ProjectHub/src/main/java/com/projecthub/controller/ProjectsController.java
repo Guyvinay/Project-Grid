@@ -1,6 +1,7 @@
 package com.projecthub.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping(value = "/projecthub/projects")
+@RequestMapping(value = "/api/projects")
 @CrossOrigin(value = "*")
 @Slf4j
 public class ProjectsController {
@@ -49,10 +50,10 @@ public class ProjectsController {
 				projectsService.getProjectById(id),HttpStatus.ACCEPTED);
 	}
 
-	@GetMapping(value = "/allProjects")
-	public ResponseEntity<List<Projects>> getAllProjects(){
+	@GetMapping(value = "/getAllProjects")
+	public ResponseEntity<Map<String, Object>> getAllProjects(){
 		 log.info("From Projects Controller getAll Projects Method ");
-		return  new ResponseEntity<List<Projects>>(
+		return  new ResponseEntity<Map<String, Object>>(
 				projectsService.getAllProjects(),HttpStatus.ACCEPTED); 
 	}
 

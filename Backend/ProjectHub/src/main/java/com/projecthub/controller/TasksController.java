@@ -12,13 +12,13 @@ import com.projecthub.model.Tasks;
 import com.projecthub.service.TasksService;
 
 @RestController
-@RequestMapping("/projectGrid")
+@RequestMapping("/api/tasks")
 public class TasksController {
 
 	@Autowired
 	private TasksService tasksService;
 	
-	@PostMapping(value = "/createTasks")
+	@PostMapping(value = "/createTask")
 	public ResponseEntity<Tasks> saveTasks(@RequestBody Tasks task){
 		return new ResponseEntity<Tasks>(tasksService.saveTasks(task),HttpStatus.ACCEPTED);
 	}

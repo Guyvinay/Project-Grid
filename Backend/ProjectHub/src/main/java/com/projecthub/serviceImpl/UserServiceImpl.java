@@ -1,7 +1,9 @@
 package com.projecthub.serviceImpl;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,9 +93,9 @@ public class UserServiceImpl implements UsersService {
 
 
 	@Override
-	public AuthenticatedResponse generateJwtToken(String username, String password,
+	public Map<String, Object> generateJwtToken(String username, String password,
 			Collection<? extends GrantedAuthority> authorities) {
-		
+		Map<String, Object> map = new HashMap<>();
 		Optional<Users> optional = usersRepository.findByEmail(username);
 		
 		if(optional.isEmpty()) {
@@ -110,9 +112,11 @@ public class UserServiceImpl implements UsersService {
 		     Long profile_id = user.getProfile_id();
 		     String profile_picture = user.getProfile_picture();
 		     String role = user.getRole();
+		     AuthenticatedResponse response = new AuthenticatedResponse(profile_id, userEmail, name,profile_picture,token,role);
+		     map.put("status", "OK");
+		     map.put("response", response );
 		     
-		     
-		     return new AuthenticatedResponse(profile_id, userEmail, name,profile_picture,token,role);
+		     return map;
 		}
 	}
 

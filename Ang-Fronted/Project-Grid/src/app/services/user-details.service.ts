@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ResponseUser } from '../modals/user';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDetailsService {
 
+  basUrl = "http://localhost:8888/api/users/getAllUsers"
   
   currentLoggedInuser : ResponseUser = {
     name: '',
@@ -16,7 +19,9 @@ export class UserDetailsService {
     role: ''
   };
 
-  constructor() { }
+  constructor(
+    private http : HttpClient
+  ) { }
 
 
   setCurrentLoggedInUser(loggedInUserDetails:ResponseUser){
@@ -26,5 +31,16 @@ export class UserDetailsService {
   getCurrentLoggedInUser() : ResponseUser {
     return this.currentLoggedInuser;
   }
+
+  getAllUsers(token:string):Observable<any>{
+    console.log("From User Service get All Users")
+    const httpOption = {
+      headers : new HttpHeaders({
+        'Authorization' : `Bearer ${token}`
+      })
+    };
+    return this.http.get<any>(this.basUrl, httpOption);
+  };
+
  
 }

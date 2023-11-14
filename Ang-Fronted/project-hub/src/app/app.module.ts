@@ -27,6 +27,9 @@ import { AdminDashboardComponent } from './dashboard/admin-dashboard/admin-dashb
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import { ManagerDashboardComponent } from './dashboard/manager-dashboard/manager-dashboard.component';
 import { LandingPageComponent } from './dashboard/landing-page/landing-page.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -45,6 +48,8 @@ import { LandingPageComponent } from './dashboard/landing-page/landing-page.comp
     UserDashboardComponent,
     ManagerDashboardComponent,
     LandingPageComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +66,7 @@ import { LandingPageComponent } from './dashboard/landing-page/landing-page.comp
     MatInputModule,
     MatCardModule,
     MatTableModule,
+    NgxSpinnerModule,
   ],
   providers: [
     UserDetailsService,
