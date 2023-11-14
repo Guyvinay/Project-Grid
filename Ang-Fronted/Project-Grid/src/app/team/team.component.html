@@ -19,7 +19,7 @@
                 aria-labelledby="accordion-nested-collapse-heading-1">
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
 
-                               
+
                     <div class="p-4">
                         <p class="text-2xl font-bold text-center mt-14 mb-2">Create Teams For The Project
                         </p>
@@ -29,18 +29,15 @@
                             <div class="mb-4">
                                 <label for="name" class="block text-gray-600 text-sm font-medium">Team Name
                                 </label>
-                                <input type="text" id="title" name="title"
-                                    [(ngModel)]="teamToBeCreated.name" required
+                                <input type="text" id="title" name="title" [(ngModel)]="teamToBeCreated.name" required
                                     class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300">
                             </div>
 
 
                             <div class="mb-4">
-                                <label for="selectedUser"
-                                    class="block text-gray-600 text-sm font-medium">Users</label>
+                                <label for="selectedUser" class="block text-gray-600 text-sm font-medium">Users</label>
                                 <select name="selectedUser"
-                                    (change)="addUserToTeam(availableUsers[dropDown.selectedIndex-1])"
-                                    #dropDown
+                                    (change)="addUserToTeam(availableUsers[dropDown.selectedIndex-1])" #dropDown
                                     class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300">
                                     <option>Choose Available Users </option>
                                     <option *ngFor="let user of availableUsers" [value]="user">{{ user.name

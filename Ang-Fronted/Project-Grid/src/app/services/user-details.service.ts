@@ -8,8 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserDetailsService {
 
-  basUrl = "http://localhost:8888/api/users/getAllUsers"
-  
+  basUrl = "http://localhost:8888/api/users";
   currentLoggedInuser : ResponseUser = {
     name: '',
     jwt_token: '',
@@ -39,8 +38,20 @@ export class UserDetailsService {
         'Authorization' : `Bearer ${token}`
       })
     };
-    return this.http.get<any>(this.basUrl, httpOption);
+    return this.http.get<any>(this.basUrl+"/getAllUsers", httpOption);
   };
 
+  getAllProfiiles(jwtToken: string):Observable<any>{
+    // console.log(jwtToken);
+     return this.http.get<any>( 
+      this.basUrl+"/getAllUsersByRoleManager",
+      {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${jwtToken}` // Pass the token here
+      })
+    });
+
+  }
  
 }

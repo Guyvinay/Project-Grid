@@ -8,8 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class TeamsService {
 
-  baseTeamUrl = "http://localhost:8888/api/teams/createTeam";
-
+  baseTeamUrl = "http://localhost:8888/api/teams";
   constructor(
     private http : HttpClient
   ) { }
@@ -18,11 +17,24 @@ export class TeamsService {
     const headers = new HttpHeaders({
       "Authorization":`Bearer ${token}`
     })
-    return this.http.post<any>( this.baseTeamUrl, 
+    return this.http.post<any>( this.baseTeamUrl+"/createTeam", 
       team, 
       {headers}
       );
   }
+
+  getAllTeams(jwtToken: string):Observable<Team[]>{
+    return this.http.get<Team[]>(
+      this.baseTeamUrl+"/getAllTeams",
+      {
+     headers: new HttpHeaders({
+       'Content-Type': 'application/json',
+       Authorization: `Bearer ${jwtToken}` // Pass the token here
+     })
+   });
+ }
+
+
 
 
 }

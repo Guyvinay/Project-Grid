@@ -3,6 +3,7 @@ import { CreateTeam } from '../modals/team';
 import { ResponseUser, User } from '../modals/user';
 import { TeamsService } from '../services/teams.service';
 import { UserDetailsService } from '../services/user-details.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-team',
@@ -30,10 +31,12 @@ export class TeamComponent implements OnInit {
   }
   constructor(
     private teamService : TeamsService,
-    private userDetailsService : UserDetailsService
+    private userDetailsService : UserDetailsService,
+    private spinner: NgxSpinnerService,
   ){}
   
   ngOnInit(): void {
+    this.spinner.show();
     const currentStoredUserdata = localStorage.getItem("loggedInUserData");
 
     if (currentStoredUserdata) {
@@ -50,16 +53,19 @@ export class TeamComponent implements OnInit {
         (error) => {
           console.log(error);
         });
-
+        this.spinner.hide();
   }
   createTeam(){
     // console.log(this.teamToBeCreated);
+    this.spinner.show();
     this.teamService.createTeam(this.teamToBeCreated,this.currentLoggedInUser.jwt_token)
                     .subscribe(
                       (response)=>{
+                        this.spinner.hide();
                         console.log(response);
                       },
                       (error)=>{
+                        this.spinner.hide();
                         console.log(error);
                       }
                     );
