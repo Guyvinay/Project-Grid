@@ -103,27 +103,28 @@ export class ProjectComponent implements OnInit {
   
   createProject(){
     this.spinner.show();
+    console.log(this.projectToBeCreated);
     this.projectService.createProject(this.projectToBeCreated,this.currentLoggedInUser.jwt_token)
                        .subscribe((response)=>{
                         console.log(response);
                         this.spinner.hide();
                         Swal.fire({
-                          icon: 'success', // Set the alert icon (success, error, warning, info, etc.)
+                          icon: 'success',
                           title: 'Project Created',
                           text: "You Have Successfully Created Project",
-                          showConfirmButton: false, // Automatically close the alert after a short delay
-                          timer: 2000, // Adjust the duration (in milliseconds) for the alert to disappear
+                          showConfirmButton: false,
+                          timer: 2000,
                         });
                        },
                        (error)=>{
                         console.log(error);
-                        this.spinner.show();
+                        this.spinner.hide();
                         Swal.fire({
-                          icon: 'error', // Set the alert icon (success, error, warning, info, etc.)
+                          icon: 'error',
                           title: 'Project Creation Failed',
                           text: "Project Creation Failed! Try again...",
-                          showConfirmButton: false, // Automatically close the alert after a short delay
-                          timer: 2000, // Adjust the duration (in milliseconds) for the alert to disappear
+                          showConfirmButton: false,
+                          timer: 2000,
                         });
                        });
   }
