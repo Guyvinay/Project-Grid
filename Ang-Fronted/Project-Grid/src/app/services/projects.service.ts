@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project } from '../modals/project';
+import { CreatedProject, Project } from '../modals/project';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class ProjectsService {
     return this.http.get<any>(this.baseProjectUrl+'/getAllProjects',httpOptions);
   };
 
-  createProject(project:Project,  token:string):Observable<any> {
+  createProject(project:CreatedProject,  token:string):Observable<any> {
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}` 

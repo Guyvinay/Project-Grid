@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CreatedProject } from '../modals/project';
+import { CreatedProject, Project } from '../modals/project';
 import { ResponseUser, User } from '../modals/user';
 import { UserDetailsService } from '../services/user-details.service';
 import { Team } from '../modals/team';
@@ -28,6 +28,7 @@ export class ProjectComponent implements OnInit {
   availableUsers: User[] = [];
   availableProfiles : User[] = [];
   availableTeams: Team[] = [];
+  availableProjects:Project[]=[];
   
   projectToBeCreated:CreatedProject={
     name: '',
@@ -87,6 +88,17 @@ export class ProjectComponent implements OnInit {
            }
          );
 
+         this.projectService.getAllProjects(this.currentLoggedInUser.jwt_token)
+                            .subscribe(
+                              (response)=>{
+                                this.availableProjects = response.projects;
+                                // console.log(response);
+                              },
+                              (error)=>{
+
+                              }
+                            );
+
   } 
   
   createProject(){
@@ -124,6 +136,11 @@ export class ProjectComponent implements OnInit {
   }
   removeTeamFromProject(index:number){
     this.projectToBeCreated.teamsId.splice(index, 1);
+  }
+
+
+  markProjectComplete(id:number){
+
   }
 
 }

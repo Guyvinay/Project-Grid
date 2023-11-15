@@ -113,29 +113,32 @@
             <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
                 <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
                     <div *ngFor="let task of allAvailableTasks"
-            class="w-full my-4 p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-            <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">{{task.title}}</h5>
-            <p class="mb-2 text-base text-gray-500 sm:text-lg dark:text-gray-400">{{task.description}}</p>
-            <p class="mb-2 text-base text-gray-500 sm:text-lg dark:text-gray-400">Status: {{task.status}}</p>
-            <p class="mb-2 text-base text-gray-500 sm:text-lg dark:text-gray-400">Priority At: {{task.priority}}</p>
-            <p class="mb-2 text-base text-gray-500 sm:text-lg dark:text-gray-400">Due Date At: {{task.due_date}}</p>
-            <button type="submit" (click)="deleteTask(task.id)"
-                class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg px-3 py-2 focus:ring focus:ring-blue-300"
-                style="margin-left: 5px;">
-                Delete Task
-            </button>
-            
-            <button type="submit" (click)="markTaskComplete(task.id)"
-                class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg px-3 py-2 focus:ring focus:ring-blue-300"
-                style="margin-left: 5px;">
-                Complete Task
-            </button>
-            <button type="submit" [routerLink]="'/update-task/'+task.id"
-                class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg px-3 py-2 focus:ring focus:ring-blue-300"
-                style="margin-left: 5px;">
-                Update Task
-            </button>
-        </div>
+                        class="w-full my-4 p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                        <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">{{task.title}}</h5>
+                        <p class="mb-2 text-base text-gray-500 sm:text-lg dark:text-gray-400">{{task.description}}</p>
+                        <p class="mb-2 text-base text-gray-500 sm:text-lg dark:text-gray-400">Status: {{task.status}}
+                        </p>
+                        <p class="mb-2 text-base text-gray-500 sm:text-lg dark:text-gray-400">Priority At:
+                            {{task.priority}}</p>
+                        <p class="mb-2 text-base text-gray-500 sm:text-lg dark:text-gray-400">Due Date At:
+                            {{task.due_date}}</p>
+                        <button type="submit" (click)="deleteTask(task.id)"
+                            class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg px-3 py-2 focus:ring focus:ring-blue-300"
+                            style="margin-left: 5px;">
+                            Delete Task
+                        </button>
+
+                        <button type="submit" (click)="markTaskComplete(task.id)"
+                            class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg px-3 py-2 focus:ring focus:ring-blue-300"
+                            style="margin-left: 5px;">
+                            Complete Task
+                        </button>
+                        <button type="submit" [routerLink]="'/update-task/'+task.id"
+                            class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg px-3 py-2 focus:ring focus:ring-blue-300"
+                            style="margin-left: 5px;">
+                            Update Task
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
