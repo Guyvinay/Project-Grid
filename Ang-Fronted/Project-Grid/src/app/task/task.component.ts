@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateTask } from '../modals/task';
+import { CreateTask, ResponseTask } from '../modals/task';
 import { ResponseUser, User } from '../modals/user';
 import { HttpClient } from '@angular/common/http';
 import { UserDetailsService } from '../services/user-details.service';
@@ -24,6 +24,9 @@ export class TaskComponent implements OnInit {
     userEmail: ''
   }
   availableUsers: User[] = [];
+
+  filteredTasks:ResponseTask[]=[]
+  allAvailableTasks:ResponseTask[]=[]
 
   currentLoggedInUser: ResponseUser = {
     name: '',
@@ -58,6 +61,18 @@ export class TaskComponent implements OnInit {
         (error) => {
           console.log(error);
         });
+
+    this.taskService.getAllTasks(this.currentLoggedInUser.jwt_token)
+    .subscribe(
+      (response)=>{
+        console.log(response);
+        this.allAvailableTasks =  response.tasks
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
+
   }
 
   createTask() {
@@ -92,6 +107,39 @@ export class TaskComponent implements OnInit {
 
   addUser(user: User) {
     this.taskToBeCreated.userEmail = user.email;
+  }
+
+  markTaskComplete(id:number){
+    
+  }
+  deleteTask(id:number){
+    this.taskService.deleteTaskById(id,this.currentLoggedInUser.jwt_token)
+    .subscribe(
+      (response)=>{
+        console.log(response);
+        const index = this.allAvailableTasks.findIndex((task)=>task.id===id);
+        if(index!=-1){
+          this.allAvailableTasks.splice(index, 1);
+        }
+        Swal.fire({
+          icon: 'success', // Set the alert icon (success, error, warning, info, etc.)
+          title: 'Task Deleted',
+          text: 'You deleted Task:-'+ response.status +", successfully!",
+          showConfirmButton: false, // Automatically close the alert after a short delay
+          timer: 1500, // Adjust the duration (in milliseconds) for the alert to disappear
+        });
+      },
+      (error)=>{
+        console.log(error);
+        Swal.fire({
+          icon: 'error', // Set the alert icon (success, error, warning, info, etc.)
+          title: 'Deletion Failed!',
+          text: 'Task Deletion Failed',
+          showConfirmButton: false, // Automatically close the alert after a short delay
+          timer: 1500, // Adjust the duration (in milliseconds) for the alert to disappear
+        });
+      }
+    );
   }
 
 }

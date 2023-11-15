@@ -30,5 +30,17 @@ export class TasksService {
       );
     // return this.http.post<any>(this.baseTaskUrl+"/createTask",task,httpOptions);
   }
+  getAllTasks(token:string):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<any>(this.baseTaskUrl+"/getAllTasks",{headers});
+  }
+  deleteTaskById(id:number,token:string):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete<any>(this.baseTaskUrl+`/deleteTask/${id}`,{headers},);
+  }
 
 }
