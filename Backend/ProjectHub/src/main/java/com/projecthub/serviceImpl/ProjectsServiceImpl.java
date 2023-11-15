@@ -35,6 +35,7 @@ public class ProjectsServiceImpl implements ProjectsService {
 		Users manager = usersRepository.findByEmail(project.getManagerEmail()).get();
 		
 		List<String> teamsId = project.getTeamsId();
+		System.out.println("Teams Id");
 		System.out.println(teamsId);
 		for(String teamId : teamsId) {
 			Teams team = teamsRepository.findById(Long.parseLong(teamId)).get();
@@ -61,7 +62,7 @@ public class ProjectsServiceImpl implements ProjectsService {
 		List<Projects> list = projectsRepository.findAll();
 		if(list.size()>0) {
 			map.put("total", list.size());
-			map.put("data", list);
+			map.put("projects", list);
 		} else {
 			map.put("total", "No Project Available to Show");
 		}

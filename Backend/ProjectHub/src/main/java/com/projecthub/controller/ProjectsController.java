@@ -1,6 +1,5 @@
 package com.projecthub.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +35,9 @@ public class ProjectsController {
 	public ResponseEntity<Projects> saveProjects( @Valid @RequestBody Projects project){
 		if(project==null)
 			throw new EntryNotFoundException("Project cannot be null, Value must be passed! ");
-		System.out.println(project.getTeamsId());
-		System.out.println(project.getManagerEmail());
+		System.out.println("team id:- "+project.getTeamsId());
+		System.out.println("manager Email:- "+project.getManagerEmail());
+		System.out.println("Name:- "+project.getName());
 		return new ResponseEntity<Projects>(projectsService.saveProjects(project),HttpStatus.ACCEPTED);
 	}
 

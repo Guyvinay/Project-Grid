@@ -27,9 +27,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 	@SecurityScheme(name = "bearerToken", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "JWT")
 	})
 public class ProjectHubApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectHubApplication.class, args);
 	}
-
 }

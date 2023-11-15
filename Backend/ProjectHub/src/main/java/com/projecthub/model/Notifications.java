@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Notifications {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String message;
 	private LocalDateTime timestamp;
 	private String isRead;

@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.projecthub.exception.EntryNotFoundException;
-import com.projecthub.exception.UnauthorizedAccessException;
 import com.projecthub.model.AuthenticatedResponse;
 import com.projecthub.model.Profile;
 // import com.projecthub.model.Users;

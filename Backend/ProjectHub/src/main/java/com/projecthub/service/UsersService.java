@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import com.projecthub.model.AuthenticatedResponse;
 import com.projecthub.model.Users;
 
 public interface UsersService {
