@@ -32,7 +32,7 @@ public class ProjectsController {
 	@Autowired
 	private ProjectsService projectsService;
 	
-	@PostMapping(value = "/register")
+	@PostMapping(value = "/createProject")
 	public ResponseEntity<Projects> saveProjects( @Valid @RequestBody Projects project){
 		if(project==null)
 			throw new EntryNotFoundException("Project cannot be null, Value must be passed! ");

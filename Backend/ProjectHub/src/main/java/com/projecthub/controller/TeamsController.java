@@ -1,5 +1,4 @@
 package com.projecthub.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +14,13 @@ import com.projecthub.model.Teams;
 import com.projecthub.service.TeamsService;
 
 @RestController
-@RequestMapping("/projectGrid")
+@RequestMapping("/api/teams")
 public class TeamsController {
 
 	@Autowired
 	private TeamsService teamsService;
 	
-	@PostMapping(value = "/createTeams")
+	@PostMapping(value = "/createTeam")
 	public ResponseEntity<Teams> createTeam(@RequestBody Teams team){
 		return new ResponseEntity<Teams>(teamsService.saveTeams(team),HttpStatus.ACCEPTED);
 	}

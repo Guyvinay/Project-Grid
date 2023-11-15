@@ -77,7 +77,7 @@ public class UsersController {
 		return  new ResponseEntity<List<Users>>(
 				userService.getAllUsersByRoleUser(),HttpStatus.ACCEPTED); 
 	}
-	@GetMapping(value = "/usersByRoleManager")
+	@GetMapping(value = "/getAllUsersByRoleManager")
 	public ResponseEntity<List<Users>> getAllUsersByRoleManager(){
 		
 		return  new ResponseEntity<List<Users>>(
