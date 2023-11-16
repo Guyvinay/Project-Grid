@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CreateTeam, Team } from '../modals/team';
 import { Observable } from 'rxjs';
+import { Utility } from './utilis.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamsService {
 
-  baseTeamUrl = "http://localhost:8888/api/teams";
+  baseTeamUrl =  Utility.baseUrl+"/api/teams";
   constructor(
     private http : HttpClient
   ) { }

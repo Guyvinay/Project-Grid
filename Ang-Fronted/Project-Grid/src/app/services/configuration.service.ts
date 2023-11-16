@@ -2,14 +2,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginCreds, RegisterUser } from '../modals/user';
+import { UtilisService, Utility } from './utilis.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigurationService {
 
-  baseLoginUrl = 'http://localhost:8888/api/profiles/profileLogin';
-  baseRegisterUrl = 'http://localhost:8888/api/users/userRegister';
+  // baseLoginUrl = 'http://localhost:8888/api/profiles/profileLogin';
+  baseLoginUrl = Utility.baseUrl+'/api/profiles/profileLogin';
+
+  // baseRegisterUrl = 'http://localhost:8888/api/users/userRegister';
+  baseRegisterUrl =  Utility.baseUrl+'/api/users/userRegister';
 
 
   constructor(

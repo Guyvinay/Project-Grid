@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CreateTask } from '../modals/task';
 import { Observable } from 'rxjs';
+import { Utility } from './utilis.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
 
-  baseTaskUrl = "http://localhost:8888/api/tasks"
+  baseTaskUrl =  Utility.baseUrl+"api/tasks"
 
   constructor(
     private http : HttpClient

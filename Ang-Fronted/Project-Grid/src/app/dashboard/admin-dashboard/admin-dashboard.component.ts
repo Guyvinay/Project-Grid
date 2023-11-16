@@ -59,7 +59,7 @@ export class AdminDashboardComponent implements OnInit {
   logoutUser(){
     localStorage.removeItem("loggedInUserData");
     setTimeout(()=>{
-      this.router.navigate(['/login']);
+      this.router.navigate(['/inits']);
     },2000);
     Swal.fire({
       icon: 'success', // Set the alert icon (success, error, warning, info, etc.)

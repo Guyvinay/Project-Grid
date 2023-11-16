@@ -2,13 +2,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreatedProject, Project } from '../modals/project';
+import { Utility } from './utilis.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
 
-  baseProjectUrl = "http://localhost:8888/api/projects";
+  // baseProjectUrl = "http://localhost:8888/api/projects";
+  baseProjectUrl =  Utility.baseUrl+"/api/projects";
 
   constructor(
     private http : HttpClient

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { ResponseUser } from '../modals/user';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Utility } from './utilis.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDetailsService {
 
-  basUrl = "http://localhost:8888/api/users";
+  basUrl =  Utility.baseUrl+"/api/users";
   currentLoggedInuser : ResponseUser = {
     name: '',
     jwt_token: '',
