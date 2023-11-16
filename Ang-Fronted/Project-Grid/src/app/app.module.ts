@@ -16,6 +16,7 @@ import { TeamComponent } from './team/team.component';
 import { TaskComponent } from './task/task.component';
 import { UserComponent } from './user/user.component';
 import { ProjectComponent } from './project/project.component';
+import { InitsComponent } from './initials/inits/inits.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ProjectComponent } from './project/project.component';
     TaskComponent,
     UserComponent,
     ProjectComponent,
+    InitsComponent,
 
   ],
   imports: [

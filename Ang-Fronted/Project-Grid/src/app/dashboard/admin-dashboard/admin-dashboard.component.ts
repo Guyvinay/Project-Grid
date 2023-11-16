@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ResponseUser } from 'src/app/modals/user';
 import { ProjectsService } from 'src/app/services/projects.service';
 import { UserDetailsService } from 'src/app/services/user-details.service';
@@ -27,6 +28,7 @@ export class AdminDashboardComponent implements OnInit {
     private userDetailsService : UserDetailsService,
     private projectService : ProjectsService,
     private router : Router,
+    private spinner: NgxSpinnerService,
   ){
   }
   ngOnInit(): void {
@@ -39,12 +41,15 @@ export class AdminDashboardComponent implements OnInit {
       this.currentLoggedInUser = this.userDetailsService.getCurrentLoggedInUser();
     };
     // console.log(this.currentLoggedInUser);
+    this.spinner.show();
     this.projectService.getAllProjects(this.currentLoggedInUser.jwt_token)
                        .subscribe(
                         (response)=>{
                           console.log(response);
+                          this.spinner.hide();
                         },
                         (error)=>{
+                          this.spinner.hide();
                           console.log(error); 
                         });
   }
