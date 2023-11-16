@@ -32,7 +32,7 @@ public class Teams {
 	@ManyToMany(mappedBy = "teams")
 	private List<Projects> project;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@Transient
 	private List<String> usersToBeAdded;
 
