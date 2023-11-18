@@ -44,8 +44,23 @@ export class LoginComponent {
                   this.spinner.hide();
                   this.currentLoggedInUser = response.data;
                   this.userDetailsService.setCurrentLoggedInUser(this.currentLoggedInUser);
-                  localStorage.setItem('loggedInUserData',JSON.stringify(this.currentLoggedInUser));
                   // if(this.currentLoggedInUser.role=='')
+                  if(this.currentLoggedInUser.role==='ROLE_ADMIN'){
+                    localStorage.setItem('loggedInUserData',JSON.stringify(this.currentLoggedInUser));
+                    setTimeout(() => {
+                      this.router.navigate(['admin-dashboard']);
+                    }, 2000);
+                  }else if(this.currentLoggedInUser.role==='ROLE_USER'){
+                    localStorage.setItem('loggedInUserProfileData',JSON.stringify(this.currentLoggedInUser));
+                    setTimeout(() => {
+                      this.router.navigate(['user-dashboard']);
+                    }, 2000);
+                  }else{
+                    localStorage.setItem('loggedInManagererProfileData',JSON.stringify(this.currentLoggedInUser));
+                    setTimeout(() => {
+                      this.router.navigate(['manager-dashboard']);
+                    }, 2000);
+                  }
                   Swal.fire({
                     icon: 'success', 
                     title: 'Login Success!',
@@ -53,9 +68,7 @@ export class LoginComponent {
                     showConfirmButton: false, 
                     timer: 1800,
                   }); 
-                  setTimeout(() => {
-                    this.router.navigate(['admin-dashboard']);
-                  }, 2000);
+                  
                 },
                 (error)=>{
                   this.spinner.hide();

@@ -17,7 +17,11 @@ export class UserComponent implements OnInit {
     profile_picture: '',
     role: ''
   }
+
   allAvailableUsers:ResponseUser[]=[];
+  allAvailableManager:ResponseUser[]=[];
+  allAvailableAdmins:ResponseUser[]=[];
+
   currentLoggedInUser: ResponseUser = {
     name: '',
     jwt_token: '',
