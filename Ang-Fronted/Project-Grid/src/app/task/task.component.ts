@@ -51,7 +51,7 @@ export class TaskComponent implements OnInit {
     } else {
       this.currentLoggedInUser = this.userDetailsService.getCurrentLoggedInUser();
     };
-    console.log(this.currentLoggedInUser);
+    // console.log(this.currentLoggedInUser);
     this.userDetailsService.getAllUsers(this.currentLoggedInUser.jwt_token)
       .subscribe(
         (response) => {

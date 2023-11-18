@@ -24,3 +24,10 @@ export interface RegisterUser {
     password:string;
     profile_picture:string;
 }
+export interface RegisterAccount {
+    name:string;
+    email:string;
+    password:string;
+    profile_picture:string;
+    role:string
+}

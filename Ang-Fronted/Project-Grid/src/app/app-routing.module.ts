@@ -8,6 +8,8 @@ import { TeamComponent } from './team/team.component';
 import { UserComponent } from './user/user.component';
 import { ProjectComponent } from './project/project.component';
 import { InitsComponent } from './initials/inits/inits.component';
+import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
+import { ManagerDashboardComponent } from './dashboard/manager-dashboard/manager-dashboard.component';
 
 const routes: Routes = [
   {path:'register', component:RegisterComponent},
@@ -18,6 +20,8 @@ const routes: Routes = [
   {path:'user', component:UserComponent},
   {path:'project', component:ProjectComponent},
   {path:'inits', component:InitsComponent},
+  {path:'user-dashboard', component:UserDashboardComponent},
+  {path:'manager-dashboard', component:ManagerDashboardComponent},
   {path:'', redirectTo:'/inits', pathMatch:'full'},
 ];
 

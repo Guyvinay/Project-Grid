@@ -45,6 +45,7 @@ export class LoginComponent {
                   this.currentLoggedInUser = response.data;
                   this.userDetailsService.setCurrentLoggedInUser(this.currentLoggedInUser);
                   localStorage.setItem('loggedInUserData',JSON.stringify(this.currentLoggedInUser));
+                  // if(this.currentLoggedInUser.role=='')
                   Swal.fire({
                     icon: 'success', 
                     title: 'Login Success!',
