@@ -10,7 +10,7 @@ export class UtilisService {
 }
 export const  Utility =  {
   baseUrl : "https://project-grid-2wrl.onrender.com"
-  // baseUrl = "http://localhost:8888"
+  // baseUrl : "http://localhost:8888"
 }
 
 

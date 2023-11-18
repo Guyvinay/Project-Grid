@@ -9,7 +9,7 @@ import { Utility } from './utilis.service';
 })
 export class TasksService {
 
-  baseTaskUrl =  Utility.baseUrl+"api/tasks"
+  baseTaskUrl =  Utility.baseUrl+"/api/tasks"
 
   constructor(
     private http : HttpClient
