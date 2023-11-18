@@ -16,11 +16,6 @@ export class TasksService {
   ) { }
 
   createTask(task:CreateTask,token:string):Observable<any>{
-    // const httpOptions = {
-    //   header: new HttpHeaders({
-    //     "Authorization":`Bearer ${token}`
-    //   })
-    // }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}` 
     });
@@ -29,7 +24,6 @@ export class TasksService {
         task ,
         {headers}
       );
-    // return this.http.post<any>(this.baseTaskUrl+"/createTask",task,httpOptions);
   }
   getAllTasks(token:string):Observable<any>{
     const headers = new HttpHeaders({

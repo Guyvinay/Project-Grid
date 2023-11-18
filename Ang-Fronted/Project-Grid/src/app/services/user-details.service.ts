@@ -23,7 +23,6 @@ export class UserDetailsService {
     private http : HttpClient
   ) { }
 
-
   setCurrentLoggedInUser(loggedInUserDetails:ResponseUser){
     this.currentLoggedInuser = loggedInUserDetails;
   }
@@ -49,7 +48,7 @@ export class UserDetailsService {
       {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwtToken}` // Pass the token here
+        Authorization: `Bearer ${jwtToken}`
       })
     });
 
