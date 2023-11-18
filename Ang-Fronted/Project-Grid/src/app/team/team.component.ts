@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateTeam } from '../modals/team';
+import { CreateTeam, Team } from '../modals/team';
 import { ResponseUser, User } from '../modals/user';
 import { TeamsService } from '../services/teams.service';
 import { UserDetailsService } from '../services/user-details.service';
@@ -25,6 +25,7 @@ export class TeamComponent implements OnInit {
 
   
   availableUsers: User[] = [];
+  availableTeams:Team[] = [];
   
   teamToBeCreated:CreateTeam = {
     name: '',
@@ -55,6 +56,18 @@ export class TeamComponent implements OnInit {
           console.log(error);
         });
         this.spinner.hide();
+
+      this.teamService.getAllTeams(this.currentLoggedInUser.jwt_token)
+                      .subscribe(
+                        (response)=>{
+                          console.log(response);
+                          this.availableTeams=response;
+                        },
+                      (error)=>{
+                        console.log(error)
+                      }
+                      )
+
   }
   createTeam(){
     // console.log(this.teamToBeCreated);
@@ -85,6 +98,10 @@ export class TeamComponent implements OnInit {
                       }
                     );
   }
+  deleteTask(index:string){}
+  markTaskComplete(index:string){}
+
+
   addUserToTeam(user:User){
     this.teamToBeCreated.usersToBeAdded.push(user.email);
   }
