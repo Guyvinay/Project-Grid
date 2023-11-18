@@ -17,6 +17,7 @@ export class UserComponent implements OnInit {
     profile_picture: '',
     role: ''
   }
+  allAvailableUsers:ResponseUser[]=[];
   currentLoggedInUser: ResponseUser = {
     name: '',
     jwt_token: '',
@@ -36,9 +37,18 @@ export class UserComponent implements OnInit {
     } else {
       this.currentLoggedInUser = this.userDetailsService.getCurrentLoggedInUser();
     };
+    this.userDetailsService.getAllUsers(this.currentLoggedInUser.jwt_token)
+      .subscribe(
+        (response) => {
+          this.allAvailableUsers = response;
+          console.log(this.allAvailableUsers);
+        },
+        (error) => {
+          console.log(error);
+        });
+
   }
 
-  allAvailableUsers:ResponseUser[]=[];
 
   onSubmitRegisterAccount(){
     this.userDetailsService.registerAccount(this.accountToBeCreated,this.currentLoggedInUser.jwt_token)
