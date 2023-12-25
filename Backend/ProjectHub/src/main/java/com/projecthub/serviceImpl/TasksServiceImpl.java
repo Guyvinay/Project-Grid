@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.projecthub.exception.EntryNotFoundException;
 import com.projecthub.model.Tasks;
 import com.projecthub.model.Users;
 import com.projecthub.repository.TasksRepository;
@@ -27,7 +28,9 @@ public class TasksServiceImpl implements TasksService {
 	@Override
 	public Tasks saveTasks(Tasks task) {
 		String userEmail = task.getUserEmail();
-		Users user = usersRepository.findByEmail(userEmail).get();
+		Users user = usersRepository.findByEmail(userEmail).orElseThrow(
+				()-> new EntryNotFoundException("Task Not Found!")
+				);
 		task.setUser(user);
 		user.getTask().add(task);
 		return tasksRepository.save(task);
@@ -35,8 +38,10 @@ public class TasksServiceImpl implements TasksService {
 	
 	@Override
 	public Tasks getTaskById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Tasks task = tasksRepository.findById(id).orElseThrow(
+				()-> new EntryNotFoundException("Task Not Found!")
+				);
+		return task;
 	}
 
 	@Override

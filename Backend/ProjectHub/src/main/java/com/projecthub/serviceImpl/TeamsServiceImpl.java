@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.projecthub.exception.EntryNotFoundException;
 import com.projecthub.model.Teams;
 import com.projecthub.model.Users;
 import com.projecthub.repository.TeamsRepository;
@@ -41,13 +42,16 @@ public class TeamsServiceImpl implements TeamsService {
 
 	@Override
 	public Teams getTeamById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		   Teams team = teamsRepository.findById(id).orElseThrow(
+					()-> new EntryNotFoundException("Task Not Found!")
+					);
+		return team;
 	}
 
 	@Override
 	public List<Teams> getAllTeams() {
 		List<Teams> list = teamsRepository.findAll();
+		if(list.isEmpty())throw new EntryNotFoundException("No Tasks Found!!!");
 		return list;
 	}
 
@@ -59,8 +63,11 @@ public class TeamsServiceImpl implements TeamsService {
 
 	@Override
 	public Teams deleteTeamById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Teams team = teamsRepository.findById(id).orElseThrow(
+				()-> new EntryNotFoundException("Task Not Found!")
+				);
+		teamsRepository.delete(team);
+		return team;
 	}
 
 }

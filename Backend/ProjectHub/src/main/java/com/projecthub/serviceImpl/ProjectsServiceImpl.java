@@ -35,8 +35,8 @@ public class ProjectsServiceImpl implements ProjectsService {
 		Users manager = usersRepository.findByEmail(project.getManagerEmail()).get();
 		
 		List<String> teamsId = project.getTeamsId();
-		System.out.println("Teams Id");
-		System.out.println(teamsId);
+//		System.out.println("Teams Id");
+//		System.out.println(teamsId);
 		for(String teamId : teamsId) {
 			Teams team = teamsRepository.findById(Long.parseLong(teamId)).get();
 			project.getTeams().add(team);
