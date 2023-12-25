@@ -55,6 +55,8 @@ public class SecurityConfiguration {
 			   .requestMatchers(HttpMethod.POST,"/projecthub/registerProfile").permitAll()
 			   .requestMatchers("/projecthub/users").hasRole("ADMIN")
 			   .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
+			   .requestMatchers("/chat*/**").permitAll()
+			   .requestMatchers("/api/users/getAllUsers").permitAll()
 			       .anyRequest()
 			       .authenticated();
 		   })
