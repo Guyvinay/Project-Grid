@@ -31,6 +31,10 @@ public class TasksController {
 	public ResponseEntity<Map<String, Object>> getAllTasks(){
 		return new ResponseEntity<Map<String, Object>>(tasksService.getAllTasks(),HttpStatus.ACCEPTED);
 	}
+	@GetMapping(value = "/getTasksById/{id}")
+	public ResponseEntity<Tasks> getTasksById(@PathVariable("id")Long id){
+		return new ResponseEntity<Tasks>(tasksService.getTaskById(id),HttpStatus.ACCEPTED);
+	}
 	@DeleteMapping(value = "/deleteTask/{id}")
 	public ResponseEntity<Map<String, Object>> deletetaskById(@PathVariable("id")Long id){
 		return new ResponseEntity<Map<String, Object>>(tasksService.deleteTaskById(id),HttpStatus.ACCEPTED);
